@@ -58,6 +58,8 @@ public class RV_playerMovement : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, pmo.transform.position, playerMovementSpeed);
         this.transform.LookAt(pmo.transform);
+        if(transform.position == playerMovePoint.transform.position) 
+            Destroy(playerMovePoint);
     }
     
 }
