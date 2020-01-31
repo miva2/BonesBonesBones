@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            Debug.Log("TargetPosition = " + targetPosition);
         }
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 5);
