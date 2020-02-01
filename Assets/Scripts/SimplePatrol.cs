@@ -18,8 +18,6 @@ public class SimplePatrol : MonoBehaviour
 
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +29,12 @@ public class SimplePatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = Vector3.MoveTowards(transform.position, nextDestination, moveSpeed);
-        //navMeshAgent.SetDestination(nextDestination);
 
         if (IsDestinationReached())
         {
             nextDestination = GetNextDestination();
             navMeshAgent.SetDestination(nextDestination);
-            Debug.Log("setting new destination: " + nextDestination);
+            //Debug.Log("setting new destination: " + nextDestination);
         }
 
         transform.LookAt(nextDestination);
