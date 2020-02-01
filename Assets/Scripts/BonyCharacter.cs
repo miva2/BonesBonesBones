@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum AttackTarget
 {
-    Left,
-    Right,
-    Head
+    LeftPoint,
+    RightPoint,
+    HeadPoint
 }
 
 public class BonyCharacter : MonoBehaviour
@@ -30,29 +30,29 @@ public class BonyCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Hit(AttackTarget.Left);
+            Hit("LeftPoint");
         }
     }
 
-    public void Hit(AttackTarget target)
+    public void Hit(String target)
     {
         Debug.Log($"Hit bone of type {target}.");
 
         var health = GetHealth();
-        if (health == 1 && target == AttackTarget.Head)
+        if (health == 1 && target == "HeadPoint")
         {
             headHasBeenHit = true;
             Die();
         }
 
-        if (target == AttackTarget.Head)
+        if (target == "HeadPoint")
         {
             Stun();
         }
         else
         {
             BoneType hitBone;
-            if (target == AttackTarget.Left)
+            if (target =="LeftPoint")
             {
                 if (HasBone(BoneType.LeftLowerArm))
                 {

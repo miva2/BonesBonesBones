@@ -8,6 +8,8 @@ public class AttackRespong : MonoBehaviour
 {
     [SerializeField]
     private bool attackEnable = false;
+    [SerializeField]
+    private GameObject player;
 
     private void AttackStarts()
     {
@@ -29,7 +31,7 @@ public class AttackRespong : MonoBehaviour
         // print("Default cursor setted;");
     }
     public void Hitted(Image HittedPoint){
-        
+        player.GetComponent<BonyCharacter>().Hit(HittedPoint.name);
     }
 
 }

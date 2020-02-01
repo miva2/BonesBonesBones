@@ -235,6 +235,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2355299372960728218}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &135022466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135022465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58e184328002f843b7baf9ad5e3c3e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DroppedBonePrefab: {fileID: -927199367670048503, guid: f55794d386915ab44a3571fd159982bb,
+    type: 3}
+  bones: 0
+  boneDropDistance: 0
+  boneDropElevation: 0
+  boneDropForce: 0
 --- !u!136 &135022475
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -313,6 +331,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &346838255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3006168492369843363, guid: 84969e1391275674897b10431c95a1e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3006168493016240512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &346838256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346838255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58e184328002f843b7baf9ad5e3c3e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DroppedBonePrefab: {fileID: -927199367670048503, guid: f55794d386915ab44a3571fd159982bb,
+    type: 3}
+  bones: -1
+  boneDropDistance: 1
+  boneDropElevation: 1
+  boneDropForce: 1
 --- !u!1 &680042742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3006168494133676911, guid: 84969e1391275674897b10431c95a1e9,
@@ -742,6 +784,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2355299373839621442, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Mass
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621442, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Drag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621442, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2355299373839621443, guid: 6146ab6fd54c34039bd159ce863243a0,
         type: 3}
       propertyPath: playerMovementSpeed
@@ -879,6 +936,10 @@ PrefabInstance:
       propertyPath: DefaultCursor
       value: 
       objectReference: {fileID: 2800000, guid: 9960542375af9034db9e3d52a529e74b, type: 3}
+    - target: {fileID: 867697676, guid: 84969e1391275674897b10431c95a1e9, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 135022465}
     - target: {fileID: 3006168492369843363, guid: 84969e1391275674897b10431c95a1e9,
         type: 3}
       propertyPath: m_Name
