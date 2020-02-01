@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CharacterPickup : MonoBehaviour
 {
+    public GameObject repairCanvas;
     public double pickupRange;
 
     void Start()
@@ -29,6 +30,8 @@ public class CharacterPickup : MonoBehaviour
 
     private void DoPickup(GameObject pickup)
     {
+        repairCanvas.SetActive(true);
+        Destroy(pickup);
     }
 
     bool TryFindClosestPickup(out GameObject pickup)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BoneAttachHandler : MonoBehaviour
 {
+    public GameObject repairCanvas;
     public GameObject otherBone;
 
     RectTransform rectTransform;
@@ -34,6 +35,7 @@ public class BoneAttachHandler : MonoBehaviour
     private void AttachBones()
     {
         Debug.Log("Bones overlap.");
+        repairCanvas.SetActive(false);
     }
 
     static Rect RectTransformToScreenSpace(RectTransform transform)
