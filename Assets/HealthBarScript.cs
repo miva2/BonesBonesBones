@@ -14,10 +14,5 @@ public class HealthBarScript : MonoBehaviour
         {
             healthBones[i].SetActive(i < health);
         }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            player.Hit(BoneType.LeftLowerArm);
-        }
     }
 }

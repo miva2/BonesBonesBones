@@ -3,9 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackTarget
+{
+    Left,
+    Right,
+    Head
+}
+
 public class BonyCharacter : MonoBehaviour
 {
+    public GameObject DroppedBonePrefab;
     public BoneType bones;
+    public float boneDropDistance;
+    public float boneDropElevation;
+    public float boneDropForce;
     bool headHasBeenHit;
 
     // Start is called before the first frame update
@@ -17,33 +28,76 @@ public class BonyCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Hit(AttackTarget.Left);
+        }
     }
 
-    public void Hit(BoneType type)
+    public void Hit(AttackTarget target)
     {
-        Debug.Log($"Hit bone of type {type}.");
+        Debug.Log($"Hit bone of type {target}.");
 
         var health = GetHealth();
-        if (health == 1 && type == BoneType.Head)
+        if (health == 1 && target == AttackTarget.Head)
         {
             headHasBeenHit = true;
             Die();
         }
 
-        if (type != BoneType.Head)
+        if (target == AttackTarget.Head)
         {
-            // mask out the bonetype that was hit
-            bones &= ~type;
-            ThrowOutBone(type);
+            Stun();
         }
         else
         {
-            Stun();
+            BoneType hitBone;
+            if (target == AttackTarget.Left)
+            {
+                if (HasBone(BoneType.LeftLowerArm))
+                {
+                    hitBone = BoneType.LeftLowerArm;
+                }
+                else
+                {
+                    hitBone = BoneType.LeftUpperArm;
+                }
+            }
+            else
+            {
+                if (HasBone(BoneType.RightLowerArm))
+                {
+                    hitBone = BoneType.RightLowerArm;
+                }
+                else
+                {
+                    hitBone = BoneType.RightUpperArm;
+                }
+            }
+
+            // mask out the bonetype that was hit and throw it out
+            bones &= ~hitBone;
+            ThrowOutBone(hitBone);
         }
     }
 
     private void ThrowOutBone(BoneType type)
     {
+        var angle = UnityEngine.Random.Range(0, 2 * Mathf.PI);
+        var dir = new Vector3(Mathf.Cos(angle), boneDropElevation, Mathf.Sin(angle)).normalized;
+        var offsetVec = dir * boneDropDistance;
+
+        var pickup = Instantiate<GameObject>(DroppedBonePrefab, transform.position + offsetVec, Quaternion.identity);
+
+        var rb = pickup.GetComponent<Rigidbody>();
+
+        var pickupBone = pickup.GetComponent<Bone>();
+        pickupBone.BoneType = type;
+        var jointType = (JointType) UnityEngine.Random.Range(0, 3);
+        pickupBone.JointType = jointType;
+
+        var forceVec = offsetVec * boneDropForce;
+        rb.AddForce(forceVec);
     }
 
     private void Die()

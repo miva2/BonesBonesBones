@@ -554,7 +554,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58e184328002f843b7baf9ad5e3c3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroppedBonePrefab: {fileID: 4310263023612130090, guid: 27e78651776bf904087be0e91be30eb2,
+    type: 3}
   bones: 0
+  boneDropDistance: 5
+  boneDropElevation: 0.3
+  boneDropForce: 100
 --- !u!1 &659816137
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,26 +744,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1181602495 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4310263023612130090, guid: 27e78651776bf904087be0e91be30eb2,
-    type: 3}
-  m_PrefabInstance: {fileID: 4310263024904715648}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1181602496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181602495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a66992942b67837478c3dd9dcabddefb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoneType: 1
-  JointType: 0
 --- !u!1 &1379310972
 GameObject:
   m_ObjectHideFlags: 0
