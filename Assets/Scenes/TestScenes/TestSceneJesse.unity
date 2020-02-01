@@ -316,11 +316,11 @@ GameObject:
   m_Component:
   - component: {fileID: 650686690}
   - component: {fileID: 650686689}
+  - component: {fileID: 650686685}
   - component: {fileID: 650686691}
   - component: {fileID: 650686688}
   - component: {fileID: 650686687}
   - component: {fileID: 650686686}
-  - component: {fileID: 650686685}
   - component: {fileID: 650686684}
   m_Layer: 0
   m_Name: Player
@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e754da798ccad0643ae6ae05ca9f0e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSystem: {fileID: 0}
   repairCanvas: {fileID: 1662045483}
   otherBone: {fileID: 902871153}
 --- !u!4 &1376936365 stripped
