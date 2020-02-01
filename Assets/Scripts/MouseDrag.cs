@@ -7,6 +7,10 @@ public class MouseDrag : MonoBehaviour
     Vector3 dragOffset;
     bool dragging = false;
 
+    void Start()
+    {
+    }
+
     public void StartDrag()
     {
         Debug.Log("StartDrag");

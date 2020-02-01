@@ -1,11 +1,16 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoneAttachHandler : MonoBehaviour
 {
     public Transform leftBoneStartingPos;
     public Transform rightBoneStartingPos;
     public GameObject bonePrefab;
+
+    public Texture jointOneSprite;
+    public Texture jointTwoSprite;
+    public Texture jointThreeSprite;
 
     GameObject rightBoneObj;
     GameObject leftBoneObj;
@@ -27,14 +32,33 @@ public class BoneAttachHandler : MonoBehaviour
         leftBone = leftBoneObj.GetComponent<Bone>();
         leftBone.BoneType = leftBoneType;
         leftBone.JointType = leftJointType;
+        var sprite = GetSprite(leftJointType);
+        leftBone.GetComponent<RawImage>().texture = sprite;
 
         rightBoneObj = Instantiate<GameObject>(bonePrefab, rightBoneStartingPos.position, Quaternion.identity, transform);
         rightRectTransform = rightBoneObj.GetComponent<RectTransform>();
         rightBone = rightBoneObj.GetComponent<Bone>();
         rightBone.BoneType = rightBoneType;
         rightBone.JointType = rightJointType;
+        sprite = GetSprite(rightJointType);
+        rightBone.GetComponent<RawImage>().texture = sprite;
 
         gameObject.SetActive(true);
+    }
+
+    private Texture GetSprite(JointType jointType)
+    {
+        switch (jointType)
+        {
+            case JointType.One:
+                return jointOneSprite;
+            case JointType.Two:
+                return jointTwoSprite;
+            case JointType.Three:
+                return jointThreeSprite;
+        }
+
+        throw new Exception();
     }
 
     void Update()
