@@ -20,8 +20,6 @@ public class CombatScript : MonoBehaviour
         if (other.tag == "Enemy")
         {
             currentEnemy = other.gameObject;
-            // canvas = currentEnemy.GetComponentInChildren<Canvas>().gameObject;
-            // shadeOut = GameObject.FindGameObjectWithTag("ShadeOut");
             activeTriggers++;
             MainCamera.orthographicSize = 15;
         }
@@ -30,15 +28,16 @@ public class CombatScript : MonoBehaviour
 
             ShowBattleUI();
         }
-    }
-
-    private void OnTriggerStay(Collider other) 
-    {
-        if(other.tag == "Enemy" && activeTriggers >= 2)
+        if(other.tag == "Enemy" && activeTriggers == 2)
         {
             //shadeOut.SetActive(false);
             BattleInit();
         }    
+    }
+
+    private void OnTriggerStay(Collider other) 
+    {
+
     }
 
     private void OnTriggerExit(Collider other) {
@@ -68,4 +67,6 @@ public class CombatScript : MonoBehaviour
         BattleUi.SendMessage("AttackStarts");
         attackEnabled = true;
     }
+    
+
 }

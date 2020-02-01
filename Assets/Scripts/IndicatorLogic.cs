@@ -60,34 +60,41 @@ public class IndicatorLogic : MonoBehaviour
         float targetMiddleHeight = currentTargetRect.height / 2f;
         float indicatorMiddleWidth = indicatorRect.width / 2f;
         float indicatorMiddleHeight = indicatorRect.height / 2f;
-        Debug.Log("middleshit: " + targetMiddleWidth + ", " + targetMiddleHeight + ", " + indicatorMiddleWidth + ", " + indicatorMiddleHeight);
+        // Debug.Log("middleshit: " + targetMiddleWidth + ", " + targetMiddleHeight + ", " + indicatorMiddleWidth + ", " + indicatorMiddleHeight);
+
+        // ##########################################
+        // # ----------------------------------------------------------- #
+        // # I comment it out cause I need console. Roman ;) #
+        // # ----------------------------------------------------------- #
+        // ###########################################
 
         float indicatorX = transform.position.x + indicatorMiddleWidth;
         float indicatorY = transform.position.y + indicatorMiddleHeight;
         float targetX = currentTargetTransform.position.x + targetMiddleWidth;
         float targetY = currentTargetTransform.position.y + targetMiddleHeight;
 
-        Debug.Log("transform.position.x " + transform.position.x);
-        Debug.Log("indicator: " + indicatorX + ", " + indicatorY);
-        Debug.Log("target: " + targetX + ", " + targetY);
+        // Debug.Log("transform.position.x " + transform.position.x);
+        // Debug.Log("indicator: " + indicatorX + ", " + indicatorY);
+        // Debug.Log("target: " + targetX + ", " + targetY);
+
 
         //Debug.Log("Mathf.Abs(indicatorX - targetX)" + Mathf.Abs(indicatorX - targetX));
         if (Mathf.Abs(indicatorX - targetX) > yellowZone && Mathf.Abs(indicatorY - targetY) > yellowZone)
         {
             //red
-            Debug.Log("RED");
+            // Debug.Log("RED");
             //changing the image of other component is ugly. Should send an event.
             //currentTargetImage.image = redTexture; //------------- TODO HERE
         } else if (Mathf.Abs(indicatorX - targetX) <= yellowZone && Mathf.Abs(indicatorY - targetY) <= yellowZone
         && !(Mathf.Abs(indicatorX - targetX) <= greenZone && Mathf.Abs(indicatorY - targetY) <= greenZone)) 
         {
             //yellow
-            Debug.Log("YELLOW");
+            // Debug.Log("YELLOW");
             //currentTargetImage.image = yellowTexture; //------------- TODO HERE
         } else if (Mathf.Abs(indicatorX - targetX) <= greenZone && Mathf.Abs(indicatorY - targetY) <= greenZone)
         {
             //green
-            Debug.Log("GREEN");
+            // Debug.Log("GREEN");
             //currentTargetImage.image = greenTexture; //------------- TODO HERE
         }
     }
