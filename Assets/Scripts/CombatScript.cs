@@ -7,10 +7,15 @@ public class CombatScript : MonoBehaviour
     private GameObject currentEnemy;
     private Canvas BattleUi;
     private void OnTriggerEnter(Collider other) {
-        currentEnemy = other.gameObject;
         if (other.tag == "Enemy")
         {
+            currentEnemy = other.gameObject;
             BattleInit();
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if(other.tag == "Enemy"){
+            BattleUi.gameObject.SetActive(false);
         }
     }
 
