@@ -22,9 +22,8 @@ public class RV_playerMovement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float hitDistance = 0.0f;
 
-
-
-        if (playerPlane.Raycast(ray, out hitDistance)){
+        var pointerOnUI = EventSystem.current.IsPointerOverGameObject();
+        if (!pointerOnUI && playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
             if(Input.GetMouseButtonDown(0)) // Left key pressed;
             {
