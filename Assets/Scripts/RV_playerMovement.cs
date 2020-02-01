@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class RV_playerMovement : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class RV_playerMovement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float hitDistance = 0.0f;
 
-        if (!EventSystem.current.IsPointerOverGameObject() && playerPlane.Raycast(ray, out hitDistance)){
+        if (playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
             if(Input.GetMouseButtonDown(0)) // Left key pressed;
             {
