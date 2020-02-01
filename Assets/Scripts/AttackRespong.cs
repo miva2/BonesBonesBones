@@ -31,8 +31,7 @@ public class AttackRespong : MonoBehaviour
             print("Battle cursor setted.");
     }
     public void ChangeCursorToRun(Texture2D DefaultCursor){
-        if (attackEnable == false)
-            Cursor.SetCursor(DefaultCursor, Vector2.zero, CursorMode.Auto);
-            print("Default cursor setted;");
+        Cursor.SetCursor(DefaultCursor, Vector2.zero, CursorMode.Auto);
+        print("Default cursor setted;");
     }
 }
