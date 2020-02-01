@@ -6,18 +6,33 @@ using UnityEngine.UIElements;
 public class IndicatorLogic : MonoBehaviour
 {
         /// <summary>BattleUI GameObject;</summary>
-        private GameObject father;
+        private GameObject battleCanvas;
         [SerializeField]
         private float indicatorMoveSpeed = 0.3f;
-        [SerializeField]
-        private Vector3 moveVector = new Vector3(1,0,0);
         /// <summary>Indicator Position.</summary>
         private Vector2 inPo;
         [SerializeField]
-        public GameObject[] aP;
+        /// <summary>
+        ///  attack points
+        /// </summary>
+        public GameObject[] attackPoints;
+
+
+    private int attackPointIndex = 0;
+    private Vector3 nextDestination;
+
+        
+
     private void Start()
     {
-        father = this.GetComponentInParent<Canvas>().gameObject;
+        battleCanvas = this.GetComponentInParent<Canvas>().gameObject;
+        nextDestination = attackPoints[attackPointIndex].transform.position;
+
+        Debug.Log("attack point 0: " + attackPoints[0]);
+        Debug.Log("attack point 1: " + attackPoints[1]);
+        Debug.Log("attack point 2: " + attackPoints[2]);
+        Debug.Log("next destination" + nextDestination);
+        Debug.Log("transform position: " + transform.position);
     }
     private void Update()
     {
@@ -30,7 +45,7 @@ public class IndicatorLogic : MonoBehaviour
     }
 
     private void Indicator_AutoMove(){
-        if (father.activeInHierarchy == true)
+        if (battleCanvas.activeInHierarchy == true)
         {
             // inPo = this.transform.position;
             // switch(inPo)
@@ -44,8 +59,38 @@ public class IndicatorLogic : MonoBehaviour
 
 
 
-            transform.Translate(moveVector * indicatorMoveSpeed * Time.deltaTime);
+
+
+            //transform.Translate(moveVector * indicatorMoveSpeed * Time.deltaTime);
+
+            if (IsDestinationReached(nextDestination)) {
+                nextDestination = GetNextDestination();
+                Debug.Log("target reached, going to next one: " + nextDestination);
+            }
+            transform.position = Vector3.MoveTowards(transform.position, nextDestination, indicatorMoveSpeed * Time.deltaTime);
 
         }
+    }
+
+    Vector3 GetNextDestination()
+    {
+        int amount = attackPoints.Length;
+
+        if (attackPointIndex < amount - 1)
+        {
+            attackPointIndex++;
+        }
+        else
+        {
+            attackPointIndex = 0;
+        }
+
+        return attackPoints[attackPointIndex].transform.position;
+    }
+
+    bool IsDestinationReached(Vector3 targetDestination)
+    {
+        var dist = Vector3.Distance(transform.position, targetDestination);
+        return dist <= 0;
     }
 }
