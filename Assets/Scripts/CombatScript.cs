@@ -59,7 +59,7 @@ public class CombatScript : MonoBehaviour
         //shadeOut.GetComponent<GameObject>().SetActive(true);
     }
     private void BattleInit(){
-        print("You can attack bro!");
+        //print("You can attack bro!");
         attackStarts = true;
     }
 }

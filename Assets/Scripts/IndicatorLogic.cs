@@ -5,38 +5,45 @@ using UnityEngine.UIElements;
 
 public class IndicatorLogic : MonoBehaviour
 {
-        /// <summary>BattleUI GameObject;</summary>
-        private GameObject battleCanvas;
-        [SerializeField]
-        private float indicatorMoveSpeed = 0.3f;
-        /// <summary>Indicator Position.</summary>
-        private Vector2 inPo;
-        [SerializeField]
-        /// <summary>
-        ///  attack points
-        /// </summary>
-        public GameObject[] attackPoints;
+    /// <summary>BattleUI GameObject;</summary>
+    private GameObject battleCanvas;
+    [SerializeField]
+    private float indicatorMoveSpeed = 0.3f;
+    public GameObject[] attackPoints;
 
-
+    [SerializeField]
     private int attackPointIndex = 0;
+    [SerializeField]
     private Vector3 nextDestination;
-    private float markerDistanceAllowance = 0.01f; 
+    private float markerDistanceAllowance = 0.01f;
 
-        
+    
+    public float greenZone = 3f;
+    public float yellowZone = 8f;
+    //public float redZone = ;
+    private Rect currentTargetRect;
+    private Transform currentTargetTransform;
+    private Image currentTargetImage;
+    private Rect indicatorRect;
+
+    public Texture greenTexture;
+    public Texture yellowTexture;
+    public Texture redTexture;
+
+
     private void Start()
     {
         battleCanvas = this.GetComponentInParent<Canvas>().gameObject;
+        indicatorRect = this.GetComponent<RectTransform>().rect;
         nextDestination = attackPoints[attackPointIndex].transform.position;
-
-        //Debug.Log("attack point 0: " + attackPoints[0]);
-        //Debug.Log("attack point 1: " + attackPoints[1]);
-        //Debug.Log("attack point 2: " + attackPoints[2]);
-        //Debug.Log("next destination" + nextDestination);
-        //Debug.Log("transform position: " + transform.position);
+        currentTargetRect = attackPoints[attackPointIndex].GetComponent<RectTransform>().rect;
+        currentTargetTransform = attackPoints[attackPointIndex].GetComponent<Transform>();
+        //currentTargetImage = attackPoints[attackPointIndex].GetComponent<Image>(); //------------- TODO HERE
     }
     private void Update()
     {
         Indicator_AutoMove();
+        determineEffectiveness();
     }
 
     public void Attack()
@@ -44,18 +51,58 @@ public class IndicatorLogic : MonoBehaviour
         print("HIT!");
     }
 
+    private void determineEffectiveness()
+    {
+
+        // TODO: dont calculate every frame
+        // TODO: make code less ugly
+        float targetMiddleWidth = currentTargetRect.width / 2f;
+        float targetMiddleHeight = currentTargetRect.height / 2f;
+        float indicatorMiddleWidth = indicatorRect.width / 2f;
+        float indicatorMiddleHeight = indicatorRect.height / 2f;
+        Debug.Log("middleshit: " + targetMiddleWidth + ", " + targetMiddleHeight + ", " + indicatorMiddleWidth + ", " + indicatorMiddleHeight);
+
+        float indicatorX = transform.position.x + indicatorMiddleWidth;
+        float indicatorY = transform.position.y + indicatorMiddleHeight;
+        float targetX = currentTargetTransform.position.x + targetMiddleWidth;
+        float targetY = currentTargetTransform.position.y + targetMiddleHeight;
+
+        Debug.Log("transform.position.x " + transform.position.x);
+        Debug.Log("indicator: " + indicatorX + ", " + indicatorY);
+        Debug.Log("target: " + targetX + ", " + targetY);
+
+        //Debug.Log("Mathf.Abs(indicatorX - targetX)" + Mathf.Abs(indicatorX - targetX));
+        if (Mathf.Abs(indicatorX - targetX) > yellowZone && Mathf.Abs(indicatorY - targetY) > yellowZone)
+        {
+            //red
+            Debug.Log("RED");
+            //changing the image of other component is ugly. Should send an event.
+            //currentTargetImage.image = redTexture; //------------- TODO HERE
+        } else if (Mathf.Abs(indicatorX - targetX) <= yellowZone && Mathf.Abs(indicatorY - targetY) <= yellowZone
+        && !(Mathf.Abs(indicatorX - targetX) <= greenZone && Mathf.Abs(indicatorY - targetY) <= greenZone)) 
+        {
+            //yellow
+            Debug.Log("YELLOW");
+            //currentTargetImage.image = yellowTexture; //------------- TODO HERE
+        } else if (Mathf.Abs(indicatorX - targetX) <= greenZone && Mathf.Abs(indicatorY - targetY) <= greenZone)
+        {
+            //green
+            Debug.Log("GREEN");
+            //currentTargetImage.image = greenTexture; //------------- TODO HERE
+        }
+    }
+
     private void Indicator_AutoMove(){
         if (battleCanvas.activeInHierarchy == true)
         {
             if (IsDestinationReached(nextDestination)) {
                 nextDestination = GetNextDestination();
-                Debug.Log("target reached, going to next one: " + nextDestination);
             }
             transform.position = Vector3.MoveTowards(transform.position, nextDestination, indicatorMoveSpeed * Time.deltaTime);
         }
     }
 
-    Vector3 GetNextDestination()
+    private Vector3 GetNextDestination()
     {
         int amount = attackPoints.Length;
 
@@ -68,20 +115,22 @@ public class IndicatorLogic : MonoBehaviour
             attackPointIndex = 0;
         }
 
+        updateTarget();
+
         return attackPoints[attackPointIndex].transform.position;
     }
 
-    bool IsDestinationReached(Vector3 targetDestination)
+    private bool IsDestinationReached(Vector3 targetDestination)
     {
         var dist = Vector3.Distance(transform.position, targetDestination);
 
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            Debug.Log("current: " + transform.position);
-            Debug.Log("target: " + targetDestination);
-            Debug.Log("reached?: " + (dist <= markerDistanceAllowance));
-        }
-
         return dist <= markerDistanceAllowance;
+    }
+
+    private void updateTarget()
+    {
+        currentTargetRect = attackPoints[attackPointIndex].GetComponent<RectTransform>().rect;
+        currentTargetTransform = attackPoints[attackPointIndex].GetComponent<Transform>();
+        //currentTargetImage = attackPoints[attackPointIndex].GetComponent<Image>(); //------------- TODO HERE
     }
 }
