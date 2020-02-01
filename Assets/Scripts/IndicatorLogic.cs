@@ -20,19 +20,19 @@ public class IndicatorLogic : MonoBehaviour
 
     private int attackPointIndex = 0;
     private Vector3 nextDestination;
+    private float markerDistanceAllowance = 0.01f; 
 
         
-
     private void Start()
     {
         battleCanvas = this.GetComponentInParent<Canvas>().gameObject;
         nextDestination = attackPoints[attackPointIndex].transform.position;
 
-        Debug.Log("attack point 0: " + attackPoints[0]);
-        Debug.Log("attack point 1: " + attackPoints[1]);
-        Debug.Log("attack point 2: " + attackPoints[2]);
-        Debug.Log("next destination" + nextDestination);
-        Debug.Log("transform position: " + transform.position);
+        //Debug.Log("attack point 0: " + attackPoints[0]);
+        //Debug.Log("attack point 1: " + attackPoints[1]);
+        //Debug.Log("attack point 2: " + attackPoints[2]);
+        //Debug.Log("next destination" + nextDestination);
+        //Debug.Log("transform position: " + transform.position);
     }
     private void Update()
     {
@@ -47,28 +47,11 @@ public class IndicatorLogic : MonoBehaviour
     private void Indicator_AutoMove(){
         if (battleCanvas.activeInHierarchy == true)
         {
-            // inPo = this.transform.position;
-            // switch(inPo)
-            // {
-            //     Vector2.MoveTowards(transform.position, aP[2].transform.position, indicatorMoveSpeed);
-            //     case :
-            //     Vector2.MoveTowards(transform.position, aP[0].transform.position, indicatorMoveSpeed);
-            //     case :
-            //     Vector2.MoveTowards(transform.position, aP[1].transform.position, indicatorMoveSpeed);
-            // };
-
-
-
-
-
-            //transform.Translate(moveVector * indicatorMoveSpeed * Time.deltaTime);
-
             if (IsDestinationReached(nextDestination)) {
                 nextDestination = GetNextDestination();
                 Debug.Log("target reached, going to next one: " + nextDestination);
             }
             transform.position = Vector3.MoveTowards(transform.position, nextDestination, indicatorMoveSpeed * Time.deltaTime);
-
         }
     }
 
@@ -91,6 +74,14 @@ public class IndicatorLogic : MonoBehaviour
     bool IsDestinationReached(Vector3 targetDestination)
     {
         var dist = Vector3.Distance(transform.position, targetDestination);
-        return dist <= 0;
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            Debug.Log("current: " + transform.position);
+            Debug.Log("target: " + targetDestination);
+            Debug.Log("reached?: " + (dist <= markerDistanceAllowance));
+        }
+
+        return dist <= markerDistanceAllowance;
     }
 }

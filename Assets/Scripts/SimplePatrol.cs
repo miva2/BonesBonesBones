@@ -14,8 +14,6 @@ public class SimplePatrol : MonoBehaviour
 
     private Vector3 nextDestination;
     private int patrolPointIndex = 0;
-    private bool destinationReached = false;
-
 
 
     // Start is called before the first frame update
