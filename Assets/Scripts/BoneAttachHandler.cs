@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BoneAttachHandler : MonoBehaviour
 {
+    public EventSystem eventSystem;
     public GameObject repairCanvas;
     public GameObject otherBone;
 
