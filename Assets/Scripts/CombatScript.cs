@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class CombatScript : MonoBehaviour
 {
-    public bool attackStarts = false;
+    public bool attackEnabled = false;
     private GameObject currentEnemy;
     private Canvas BattleUi;
     /// <summary>Shade out image for dissabling BattleUi.</summary>
@@ -42,13 +42,18 @@ public class CombatScript : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        attackStarts = false;
+        attackEnabled = false;
 
         if (other.tag == "Enemy") activeTriggers--;
+        if(other.tag == "Enemy" && activeTriggers == 1){
+             attackEnabled = false;
+             BattleUi.SendMessage("AttackFinish");
+        }
         if(other.tag == "Enemy" && activeTriggers <= 0)
         {
             BattleUi.gameObject.SetActive(false);
             MainCamera.orthographicSize = 20;
+
         }
     }
 
@@ -59,7 +64,8 @@ public class CombatScript : MonoBehaviour
         //shadeOut.GetComponent<GameObject>().SetActive(true);
     }
     private void BattleInit(){
-        //print("You can attack bro!");
-        attackStarts = true;
+        print("You can attack bro!");
+        BattleUi.SendMessage("AttackStarts");
+        attackEnabled = true;
     }
 }
