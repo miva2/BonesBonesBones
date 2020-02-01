@@ -23,6 +23,7 @@ public class SimplePatrol : MonoBehaviour
     {
         nextDestination = patrolPoints[patrolPointIndex].transform.position;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.updateRotation = true;
         navMeshAgent.SetDestination(nextDestination);
     }
 
@@ -37,7 +38,6 @@ public class SimplePatrol : MonoBehaviour
             //Debug.Log("setting new destination: " + nextDestination);
         }
 
-        transform.LookAt(nextDestination);
     }
 
     Vector3 GetNextDestination()

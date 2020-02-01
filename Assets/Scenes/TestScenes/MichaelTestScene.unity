@@ -145,11 +145,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60484884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.34, y: 6.16, z: 12.53}
+  m_LocalPosition: {x: 17.34, y: 0, z: 12.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7147837362943981226}
   - {fileID: 967307915}
+  - {fileID: 7147837362943981226}
   - {fileID: 1567818424}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -518,7 +518,7 @@ Transform:
   - {fileID: 1436127639}
   - {fileID: 1892719849}
   m_Father: {fileID: 60484885}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984242692
 GameObject:
@@ -987,7 +987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567818423}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -19.2, y: -6.16, z: 90.9}
+  m_LocalPosition: {x: -19.2, y: 0, z: 90.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 831541434}
@@ -1007,8 +1007,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints:
-  - {fileID: 1513886266}
+  - {fileID: 1892719848}
   - {fileID: 1436127638}
+  - {fileID: 1892719848}
   moveSpeed: 1
   destinationReachedRadius: 10
 --- !u!54 &1567818426
@@ -1050,7 +1051,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1567818423}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1573,7 +1574,7 @@ PrefabInstance:
     - target: {fileID: 6758744948449750295, guid: 5259aa547603b4980b808f247177749a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6758744948449750295, guid: 5259aa547603b4980b808f247177749a,
         type: 3}
