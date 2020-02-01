@@ -24,8 +24,8 @@ public class SimplePatrol : MonoBehaviour
     void Start()
     {
         nextDestination = patrolPoints[patrolPointIndex].transform.position;
-        //navMeshAgent = GetComponent<NavMeshAgent>();
-        //navMeshAgent.SetDestination(nextDestination);
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.SetDestination(nextDestination);
     }
 
     // Update is called once per frame
@@ -36,7 +36,8 @@ public class SimplePatrol : MonoBehaviour
 
         if (IsDestinationReached())
         {
-            //navMeshAgent.SetDestination(GetNextDestination());
+            nextDestination = GetNextDestination();
+            navMeshAgent.SetDestination(nextDestination);
             Debug.Log("setting new destination: " + nextDestination);
         }
 
@@ -61,6 +62,7 @@ public class SimplePatrol : MonoBehaviour
 
     bool IsDestinationReached()
     {
-        return Vector3.Distance(transform.position, nextDestination) <= destinationReachedRadius;
+        var dist = Vector3.Distance(transform.position, nextDestination);
+        return dist <= destinationReachedRadius;
     }
 }
