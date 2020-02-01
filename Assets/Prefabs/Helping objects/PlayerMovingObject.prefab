@@ -57,4 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f83253dd1f0ec47a3c94119f49ac4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuseTimer: 100
+  fuseTimer: 10
