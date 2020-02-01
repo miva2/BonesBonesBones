@@ -35,6 +35,8 @@ public class SimplePatrol : MonoBehaviour
             UpdatePatrolPointIndex();
             nextDestination = patrolPoints[patrolPointIndex].transform.position;
         }
+
+        transform.LookAt(nextDestination);
     }
 
     void UpdatePatrolPointIndex()
