@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SimplePatrol : MonoBehaviour
 {
 
     public GameObject[] patrolPoints;
     public float moveSpeed;
+    public float destinationReachedRadius = 0.4f;
 
+    private NavMeshAgent navMeshAgent;
 
     private Vector3 nextDestination;
     private int patrolPointIndex = 0;
     private bool destinationReached = false;
 
-    private float destinationReachedRadius = 0.1f;
+
 
 
 
@@ -21,29 +24,30 @@ public class SimplePatrol : MonoBehaviour
     void Start()
     {
         nextDestination = patrolPoints[patrolPointIndex].transform.position;
+        //navMeshAgent = GetComponent<NavMeshAgent>();
+        //navMeshAgent.SetDestination(nextDestination);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, nextDestination, moveSpeed);
+        //transform.position = Vector3.MoveTowards(transform.position, nextDestination, moveSpeed);
+        //navMeshAgent.SetDestination(nextDestination);
 
-        destinationReached = Vector3.Distance(transform.position, nextDestination) <= destinationReachedRadius;
-
-        if (destinationReached)
+        if (IsDestinationReached())
         {
-            UpdatePatrolPointIndex();
-            nextDestination = patrolPoints[patrolPointIndex].transform.position;
+            //navMeshAgent.SetDestination(GetNextDestination());
+            Debug.Log("setting new destination: " + nextDestination);
         }
 
         transform.LookAt(nextDestination);
     }
 
-    void UpdatePatrolPointIndex()
+    Vector3 GetNextDestination()
     {
         int amount = patrolPoints.Length;
 
-        if(patrolPointIndex <= amount)
+        if(patrolPointIndex < amount-1)
         {
             patrolPointIndex++;
         }
@@ -51,5 +55,12 @@ public class SimplePatrol : MonoBehaviour
         {
            patrolPointIndex = 0;
         }
+
+        return patrolPoints[patrolPointIndex].transform.position;
+    }
+
+    bool IsDestinationReached()
+    {
+        return Vector3.Distance(transform.position, nextDestination) <= destinationReachedRadius;
     }
 }
