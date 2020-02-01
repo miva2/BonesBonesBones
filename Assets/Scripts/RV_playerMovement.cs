@@ -12,11 +12,8 @@ public class RV_playerMovement : MonoBehaviour
     private Transform pmo; // Player move object;
     private bool pmoSpawned, moving; 
     public static GameObject triggeringPMO;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Collider battleRadius, walkingRadius;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +21,8 @@ public class RV_playerMovement : MonoBehaviour
         Plane playerPlane = new Plane(Vector3.up, transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float hitDistance = 0.0f;
+
+
 
         if (playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
@@ -59,7 +58,8 @@ public class RV_playerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.tag == "PMO"){
+
+        if(other.tag == "PMO" && walkingRadius){
             triggeringPMO = other.gameObject;
             triggeringPMO.GetComponent<PMO>().DestroyPMO();
         }    

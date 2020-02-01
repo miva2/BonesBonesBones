@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -468,6 +468,8 @@ MonoBehaviour:
   playerMovementSpeed: 0.5
   playerMovePoint: {fileID: 4186064338879712024, guid: 98f609c07f98f26428e4162c58739066,
     type: 3}
+  battleRadius: {fileID: 0}
+  walkingRadius: {fileID: 0}
 --- !u!136 &879712730
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -478,10 +480,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.9018923
-  m_Height: 6.4107666
+  m_Radius: 0.49806342
+  m_Height: 2.932676
   m_Direction: 1
-  m_Center: {x: 0, y: -0.31066462, z: 0.5325016}
+  m_Center: {x: 0, y: -2.0497036, z: 0.09581598}
 --- !u!95 &879712731
 Animator:
   serializedVersion: 3
@@ -526,7 +528,7 @@ CapsuleCollider:
   m_Radius: 5.085745
   m_Height: 16.041271
   m_Direction: 1
-  m_Center: {x: 0.0321625, y: -0.060355417, z: 0.3290628}
+  m_Center: {x: 0.0321625, y: -0.06035141, z: 0.3290628}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,31 +793,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
-        type: 3}
-      propertyPath: attackPoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
-        type: 3}
-      propertyPath: attackPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 734962990}
-    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
-        type: 3}
-      propertyPath: attackPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1331454827}
-    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
-        type: 3}
-      propertyPath: attackPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 743040655}
-    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
-        type: 3}
-      propertyPath: indicatorMoveSpeed
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 3006168492562610485, guid: 84969e1391275674897b10431c95a1e9,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -845,6 +822,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: attackPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: attackPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 734962990}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: attackPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1331454827}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: attackPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 743040655}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: indicatorMoveSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3006168492823502015, guid: 84969e1391275674897b10431c95a1e9,
         type: 3}
