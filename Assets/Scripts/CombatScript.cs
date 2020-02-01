@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class CombatScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    private GameObject currentEnemy;
+    private Canvas BattleUi;
     private void OnTriggerEnter(Collider other) {
+        currentEnemy = other.gameObject;
         if (other.tag == "Enemy")
         {
-            print("Enemy spotted");
+            BattleInit();
         }
+    }
+
+    /// <summary>First phase of battle.</summary>
+    private void BattleInit(){
+        BattleUi = currentEnemy.GetComponentInChildren<Canvas>(true);
+        BattleUi.gameObject.SetActive(true);
     }
 }

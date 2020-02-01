@@ -25,7 +25,6 @@ public class RV_playerMovement : MonoBehaviour
 
         if(playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
-            // Quaternion tagetRotation = Quaternion.LookRotation(targetPoint = transform.position);
             if(Input.GetMouseButtonDown(0)) // Left key pressed;
             {
                 moving = true;
@@ -46,8 +45,6 @@ public class RV_playerMovement : MonoBehaviour
         if(moving) {
             Move();
         }
-
-         
     }
     private void Move()
     {
