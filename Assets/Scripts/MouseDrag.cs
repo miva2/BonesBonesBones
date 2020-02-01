@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class MouseDrag : MonoBehaviour
 {
     Vector3 dragOffset;
-    bool dragging;
+    bool dragging = false;
     Image image;
 
     // Start is called before the first frame update

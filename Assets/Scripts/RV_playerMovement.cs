@@ -8,9 +8,8 @@ public class RV_playerMovement : MonoBehaviour
     private float playerMovementSpeed = 0.3f;
     public GameObject playerMovePoint;
     private Transform pmo; // Player move object;
-    private bool pmoSpawned;
-    private bool moving;
-    private Transform currPos;
+    private bool pmoSpawned, moving; 
+    public static GameObject triggeringPMO;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +29,6 @@ public class RV_playerMovement : MonoBehaviour
             if(Input.GetMouseButtonDown(0)) // Left key pressed;
             {
                 moving = true;
-                currPos = playerMovePoint.transform;
                 if(pmoSpawned)
                 {
                     pmo = null;
@@ -40,16 +38,12 @@ public class RV_playerMovement : MonoBehaviour
                 }
             }
         }
-        if(pmo)
-        {
+        if(pmo) {
             pmoSpawned =true;
-        } 
-        else
-        {
+        } else {
             pmoSpawned = false;
         }
-        if(moving)
-        {
+        if(moving) {
             Move();
         }
 
@@ -57,9 +51,18 @@ public class RV_playerMovement : MonoBehaviour
     }
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, pmo.transform.position, playerMovementSpeed);
-        this.transform.LookAt(pmo.transform);
+        if (pmo)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, pmo.transform.position, playerMovementSpeed);
+            this.transform.LookAt(pmo.transform);
+        }
     }
-    
-    
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.tag == "PMO"){
+            triggeringPMO = other.gameObject;
+            triggeringPMO.GetComponent<PMO>().DestroyPMO();
+        }    
+    }
 }
