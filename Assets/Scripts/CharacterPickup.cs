@@ -71,7 +71,6 @@ public class CharacterPickup : MonoBehaviour
         var distSq = diff.sqrMagnitude;
         // if it's within range to pick up we activate the pickup UI and disable player movement
         return distSq < pickupRange * pickupRange;
-        
     }
 
     private void DoPickup(GameObject pickup)

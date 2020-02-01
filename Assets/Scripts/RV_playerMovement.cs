@@ -23,8 +23,7 @@ public class RV_playerMovement : MonoBehaviour
         float hitDistance = 0.0f;
 
 
-
-        if (playerPlane.Raycast(ray, out hitDistance)){
+        if (!EventSystem.current.IsPointerOverGameObject() && playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
             if(Input.GetMouseButtonDown(0)) // Left key pressed;
             {
