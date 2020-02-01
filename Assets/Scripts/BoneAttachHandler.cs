@@ -1,43 +1,63 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class BoneAttachHandler : MonoBehaviour
 {
-    public EventSystem eventSystem;
-    public GameObject repairCanvas;
-    public GameObject otherBone;
+    public Transform leftBoneStartingPos;
+    public Transform rightBoneStartingPos;
+    public GameObject bonePrefab;
 
-    RectTransform rectTransform;
-    RectTransform otherRectTransform;
+    GameObject rightBoneObj;
+    GameObject leftBoneObj;
+
+    RectTransform leftRectTransform;
+    RectTransform rightRectTransform;
+    Bone leftBone;
+    Bone rightBone;
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-        otherRectTransform = otherBone?.GetComponent<RectTransform>();
+    }
+
+    public void CreateBones(BoneType leftBoneType, BoneType rightBoneType, JointType leftJointType, JointType rightJointType)
+    {
+        // Create the left and right bone from the prefab and activate the bone UI
+        leftBoneObj = Instantiate<GameObject>(bonePrefab, leftBoneStartingPos.position, Quaternion.identity, transform);
+        leftRectTransform = leftBoneObj.GetComponent<RectTransform>();
+        leftBone = leftBoneObj.GetComponent<Bone>();
+        leftBone.BoneType = leftBoneType;
+        leftBone.JointType = leftJointType;
+
+        rightBoneObj = Instantiate<GameObject>(bonePrefab, rightBoneStartingPos.position, Quaternion.identity, transform);
+        rightRectTransform = rightBoneObj.GetComponent<RectTransform>();
+        rightBone = rightBoneObj.GetComponent<Bone>();
+        rightBone.BoneType = rightBoneType;
+        rightBone.JointType = rightJointType;
+
+        gameObject.SetActive(true);
     }
 
     void Update()
     {
-        if (otherRectTransform != null && BonesOverlap())
+        if (leftRectTransform != null && rightRectTransform != null && BonesOverlap())
         {
+            // TODO check if bone types match
             AttachBones();
         }
     }
 
     private bool BonesOverlap()
     {
-        var first = RectTransformToScreenSpace(rectTransform);
-        var second = RectTransformToScreenSpace(otherRectTransform);
-        return first.Overlaps(second);
+        var left = RectTransformToScreenSpace(leftRectTransform);
+        var right = RectTransformToScreenSpace(rightRectTransform);
+        return left.Overlaps(right);
     }
 
     private void AttachBones()
     {
-        Debug.Log("Bones overlap.");
-        repairCanvas.SetActive(false);
+        gameObject.SetActive(false);
+        Destroy(leftBoneObj);
+        Destroy(rightBoneObj);
     }
 
     static Rect RectTransformToScreenSpace(RectTransform transform)

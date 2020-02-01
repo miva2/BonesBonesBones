@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class CharacterPickup : MonoBehaviour
 {
-    GameObject currentPickup;
-
     public GameObject repairCanvas;
     public double pickupRange;
+    public BoneAttachHandler boneAttachHandler;
+
+    BonyCharacter bonyCharacter;
+    GameObject currentPickup;
 
     void Start()
     {
+        bonyCharacter = GetComponent<BonyCharacter>();
     }
 
     // Update is called once per frame
@@ -73,14 +76,32 @@ public class CharacterPickup : MonoBehaviour
 
     private void DoPickup(GameObject pickup)
     {
-        if (currentPickup != null)
-        {
-            currentPickup.layer = 0;
-        }
+        var pickedUpBone = pickup.GetComponent<Bone>();
+        PickBoneTypes(pickup, pickedUpBone, out var rightBoneType, out var rightJointType);
 
-        pickup.layer = 8;
-        repairCanvas.SetActive(true);
+        var leftBoneType = pickedUpBone.BoneType;
+        var leftJointType = pickedUpBone.JointType;
+
+        boneAttachHandler.CreateBones(leftBoneType, rightBoneType, leftJointType, rightJointType);
+
         Destroy(pickup);
+    }
+
+    private void PickBoneTypes(GameObject pickup, Bone pickedUpBone, out BoneType rightBoneType, out JointType rightJoinType)
+    {
+        // pickup should store how good the hit was so we can
+        rightBoneType = BoneType.LeftLowerArm;
+        rightJoinType = JointType.One;
+    }
+
+    BoneType[] allBoneTypes = new [] { BoneType.LeftLowerArm, BoneType.RightLowerArm, BoneType.LeftUpperArm, BoneType.RightUpperArm };
+
+    private BoneType GetRandomBoneTypeExcept(BoneType rightBoneType)
+    {
+        var boneTypes = new List<BoneType>(allBoneTypes);
+        boneTypes.Remove(rightBoneType);
+        var index = UnityEngine.Random.Range(0, boneTypes.Count);
+        return boneTypes[index];
     }
 
     bool TryFindClosestPickup(out GameObject pickup)
