@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CharacterPickup : MonoBehaviour
 {
+    GameObject currentPickup;
+
     public GameObject repairCanvas;
     public double pickupRange;
 
@@ -15,21 +17,68 @@ public class CharacterPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // When E is pressed we get the closest pickup object
-        if (Input.GetKeyDown(KeyCode.E) && TryFindClosestPickup(out var pickup))
+        // check if pickup left our range
+        if (currentPickup != null && !InPickupRange(currentPickup))
         {
-            var diff = transform.position - pickup.transform.position;
-            var distSq = diff.sqrMagnitude;
-            // if it's within range to pick up we activate the pickup UI and disable player movement
-            if (distSq < pickupRange * pickupRange)
+            DisableOutline(currentPickup);
+            currentPickup = null;
+        }
+
+        // update the closest pickup
+        if (TryFindClosestPickup(out var pickup) && pickup != currentPickup)
+        {
+            if (currentPickup != null)
+            {
+                DisableOutline(currentPickup);
+                currentPickup = null;
+            }
+
+            // if it's within range we change current pickup and highlight it
+            if (InPickupRange(pickup))
+            {
+                EnableOutline(pickup);
+                currentPickup = pickup;
+            }
+        }
+
+        // if we're not picking up a bone (UI is inactive) and we press the E key, do pickup
+        if (!repairCanvas.activeSelf && Input.GetKeyDown(KeyCode.E))
+        {
+            // if a pickup is within range we activate the pickup UI
+            if (currentPickup != null)
             {
                 DoPickup(pickup);
             }
         }
     }
 
+    private void DisableOutline(GameObject pickup)
+    {
+        pickup.layer = 0;
+    }
+
+    private void EnableOutline(GameObject pickup)
+    {
+        pickup.layer = 8;
+    }
+
+    private bool InPickupRange(GameObject pickup)
+    {
+        var diff = transform.position - pickup.transform.position;
+        var distSq = diff.sqrMagnitude;
+        // if it's within range to pick up we activate the pickup UI and disable player movement
+        return distSq < pickupRange * pickupRange;
+        
+    }
+
     private void DoPickup(GameObject pickup)
     {
+        if (currentPickup != null)
+        {
+            currentPickup.layer = 0;
+        }
+
+        pickup.layer = 8;
         repairCanvas.SetActive(true);
         Destroy(pickup);
     }
