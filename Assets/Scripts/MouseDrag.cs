@@ -6,29 +6,24 @@ public class MouseDrag : MonoBehaviour
 {
     Vector3 dragOffset;
     bool dragging = false;
-    Image image;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartDrag()
     {
-        image = GetComponent<Image>();
+        Debug.Log("StartDrag");
+        dragging = true;
+        dragOffset = gameObject.transform.position - Input.mousePosition;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateDrag()
     {
-        if (dragging)
-        {
-            DoDrag();
-        }
-        else
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        }
+        Debug.Log("UpdateDrag");
+        gameObject.transform.position = Input.mousePosition + dragOffset;
     }
 
-    void DoDrag()
+    public void EndDrag()
     {
-        transform.position = Input.mousePosition + dragOffset;
+        Debug.Log("EndDrag");
+        dragging = false;
     }
+
 }
