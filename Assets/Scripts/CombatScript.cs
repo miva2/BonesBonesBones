@@ -5,12 +5,15 @@ using UnityEngine.UIElements;
 
 public class CombatScript : MonoBehaviour
 {
+    public bool attackStarts = false;
     private GameObject currentEnemy;
     private Canvas BattleUi;
     /// <summary>Shade out image for dissabling BattleUi.</summary>
     [SerializeField]
    // private GameObject shadeOut;
     private int activeTriggers = 0;
+    [SerializeField]
+    private Camera MainCamera;
 
     private void OnTriggerEnter(Collider other) {
             // Enemy init \\
@@ -19,7 +22,8 @@ public class CombatScript : MonoBehaviour
             currentEnemy = other.gameObject;
             // canvas = currentEnemy.GetComponentInChildren<Canvas>().gameObject;
             // shadeOut = GameObject.FindGameObjectWithTag("ShadeOut");
-             activeTriggers++;
+            activeTriggers++;
+            MainCamera.orthographicSize = 15;
         }
         if (other.tag == "Enemy" && activeTriggers >= 1)
         {
@@ -38,10 +42,13 @@ public class CombatScript : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
+        attackStarts = false;
+
         if (other.tag == "Enemy") activeTriggers--;
         if(other.tag == "Enemy" && activeTriggers <= 0)
         {
             BattleUi.gameObject.SetActive(false);
+            MainCamera.orthographicSize = 20;
         }
     }
 
@@ -53,5 +60,6 @@ public class CombatScript : MonoBehaviour
     }
     private void BattleInit(){
         print("You can attack bro!");
+        attackStarts = true;
     }
 }
