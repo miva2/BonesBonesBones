@@ -11,6 +11,7 @@ public class BonyCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bones = BoneType.LeftLowerArm | BoneType.LeftUpperArm | BoneType.RightLowerArm | BoneType.RightUpperArm;
     }
 
     // Update is called once per frame
