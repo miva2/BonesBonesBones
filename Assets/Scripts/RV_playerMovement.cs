@@ -10,6 +10,7 @@ public class RV_playerMovement : MonoBehaviour
     private Transform pmo; // Player move object;
     private bool pmoSpawned;
     private bool moving;
+    private Transform currPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +27,10 @@ public class RV_playerMovement : MonoBehaviour
         if(playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
             // Quaternion tagetRotation = Quaternion.LookRotation(targetPoint = transform.position);
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0)) // Left key pressed;
             {
                 moving = true;
-
+                currPos = playerMovePoint.transform;
                 if(pmoSpawned)
                 {
                     pmo = null;
@@ -58,8 +59,7 @@ public class RV_playerMovement : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, pmo.transform.position, playerMovementSpeed);
         this.transform.LookAt(pmo.transform);
-        if(transform.position == playerMovePoint.transform.position) 
-            Destroy(playerMovePoint);
     }
+    
     
 }
