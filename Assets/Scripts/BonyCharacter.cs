@@ -13,11 +13,16 @@ public enum AttackTarget
 
 public class BonyCharacter : MonoBehaviour
 {
+    [Header("Bone settings")]
     public GameObject DroppedBonePrefab;
     public BoneType bones;
+
+    [Header("Dropping bones options")]
     public float boneDropDistance = 4;
     public float boneDropElevation = .3f;
     public float boneDropForce = 100;
+    
+    [Header("Stun time")]
     public float stunSeconds = 3;
 
     bool headHasBeenHit;

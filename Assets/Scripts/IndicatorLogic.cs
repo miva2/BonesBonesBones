@@ -14,9 +14,9 @@ public class IndicatorLogic : MonoBehaviour
     [Space]
     
     [SerializeField, Header("Hit chance radius")]
-    private float greenZone = .4f;
+    private float greenZone = 6f;
     [SerializeField]
-    private float yellowZone = 2f;
+    private float yellowZone = 13f;
     [Space]
 
 
@@ -183,11 +183,13 @@ public class IndicatorLogic : MonoBehaviour
     /// </summary>
     /// <param name="Image">String {Aim, Hit, Miss}</param>
     public void ChangeIndicatorImage(string Image){
-        if(Image == "Aim"){
+        if (Image == "Aim")        {
             Indicator.sprite = AimSprite;
-        } else if (Image == "Hit"){
+        } 
+        else if (Image == "Hit")        {
             Indicator.sprite = HitSprite;
-        } else if(Image == "Miss"){
+        } 
+        else if (Image == "Miss")        {
             Indicator.sprite = MissSprite;
         }
     }

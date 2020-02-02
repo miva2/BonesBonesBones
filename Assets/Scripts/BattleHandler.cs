@@ -59,11 +59,11 @@ public class BattleHandler : MonoBehaviour
                 indicatorLogic.ChangeIndicatorImage("Miss");
                 break;
             case HitZoneColor.YELLOW:
-                eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0.26f,0.55f));
+                eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0.45f,0.75f));
                 break;
                 // If you'er successful.
             case HitZoneColor.GREEN:
-                eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0.75f,1f));
+                eBChS.TakeDamage(cHZ.hitzoneType, 1f);
                 break;
         }
         

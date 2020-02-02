@@ -11317,6 +11317,12 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5363437644954129684, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: DroppedBonePrefab
+      value: 
+      objectReference: {fileID: 4310263023612130090, guid: 27e78651776bf904087be0e91be30eb2,
+        type: 3}
     - target: {fileID: 5363437645540525544, guid: c5b64f225d29bba47b06fe09a9c40245,
         type: 3}
       propertyPath: player
@@ -11441,17 +11447,17 @@ PrefabInstance:
     - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
         type: 3}
       propertyPath: indicatorMoveSpeed
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
         type: 3}
       propertyPath: yellowZone
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
         type: 3}
       propertyPath: greenZone
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7194162090610384164, guid: c5b64f225d29bba47b06fe09a9c40245,
         type: 3}
