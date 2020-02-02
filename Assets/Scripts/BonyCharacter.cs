@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum AttackTarget
 {
@@ -14,15 +15,22 @@ public class BonyCharacter : MonoBehaviour
 {
     public GameObject DroppedBonePrefab;
     public BoneType bones;
-    public float boneDropDistance;
-    public float boneDropElevation;
-    public float boneDropForce;
+    public float boneDropDistance = 4;
+    public float boneDropElevation = .3f;
+    public float boneDropForce = 100;
+    public float stunSeconds = 3;
+
     bool headHasBeenHit;
+    float stunTimeLeft;
+    NavMeshAgent navMeshAgent;
+    Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         bones = BoneType.LeftLowerArm | BoneType.LeftUpperArm | BoneType.RightLowerArm | BoneType.RightUpperArm;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -30,11 +38,27 @@ public class BonyCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Hit("LeftPoint");
+            Hit("LeftPoint", Vector3.zero);
+        }
+
+        UpdateStunTime();
+    }
+
+    private void UpdateStunTime()
+    {
+        if (stunTimeLeft > 0)
+        {
+            stunTimeLeft -= Time.deltaTime;
+            if (stunTimeLeft < 0)
+            {
+                stunTimeLeft = 0;
+                if (navMeshAgent != null)
+                    navMeshAgent.isStopped = false;
+            }
         }
     }
 
-    public void Hit(String target)
+    public void Hit(String target, Vector3 stunForce)
     {
         Debug.Log($"Hit bone of type {target}.");
 
@@ -47,7 +71,7 @@ public class BonyCharacter : MonoBehaviour
 
         if (target == "HeadPoint")
         {
-            Stun();
+            Stun(stunForce);
         }
         else
         {
@@ -105,9 +129,14 @@ public class BonyCharacter : MonoBehaviour
         Debug.Log("Character died.");
     }
 
-    private void Stun()
+    private void Stun(Vector3 force)
     {
-        Debug.Log("Stunned the enemy.");
+        stunTimeLeft = stunSeconds;
+        if (navMeshAgent != null)
+            navMeshAgent.isStopped = true;
+        
+        if (rigidbody != null)
+            rigidbody.AddForce(force);
     }
 
     public int GetHealth()
