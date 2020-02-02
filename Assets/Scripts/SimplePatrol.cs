@@ -22,6 +22,7 @@ public class SimplePatrol : MonoBehaviour
         nextDestination = patrolPoints[patrolPointIndex].transform.position;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.updateRotation = true;
+        navMeshAgent.speed = moveSpeed;
         navMeshAgent.SetDestination(nextDestination);
     }
 
