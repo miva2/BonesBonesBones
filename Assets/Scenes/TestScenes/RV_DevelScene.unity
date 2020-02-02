@@ -369,6 +369,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1334756446}
+    - target: {fileID: 581896293279974618, guid: c480d4aec6df4dd4a9257a8f81c05241,
+        type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581896293279974622, guid: c480d4aec6df4dd4a9257a8f81c05241,
         type: 3}
       propertyPath: m_Name
@@ -663,6 +668,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e754da798ccad0643ae6ae05ca9f0e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2002700093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5298122558437069087, guid: 596d0e5c38f91054d9a77394eede389a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1060199090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2002700100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002700093}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1155517918527597735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,6 +758,52 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy(Player)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: greenTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: d5351301170695248a6e280ba9542775,
+        type: 3}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: yellowTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: d171d8b843fe072478c5fd6c9bde6bbf,
+        type: 3}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: redTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: a148a658b19a1a448a8aa6b3fb716d44,
+        type: 3}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: AimSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e3f1d9f1fed3b44da1cccd32041ca37,
+        type: 3}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: HitSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d99938552e4c2e4b98b3934834a41b2,
+        type: 3}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: MissSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b07fe9db1e1e8a4a8078be3c5869a6d,
+        type: 3}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: BattleHandler
+      value: 
+      objectReference: {fileID: 3006168493016240521}
+    - target: {fileID: 7194162090300733660, guid: c5b64f225d29bba47b06fe09a9c40245,
+        type: 3}
+      propertyPath: indicatorMoveSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b64f225d29bba47b06fe09a9c40245, type: 3}
@@ -894,6 +964,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6146ab6fd54c34039bd159ce863243a0, type: 3}
+--- !u!1 &3006168493016240513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7194162090225145159, guid: c5b64f225d29bba47b06fe09a9c40245,
+    type: 3}
+  m_PrefabInstance: {fileID: 1155517918527597735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3006168493016240521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168493016240513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4828d79c1aa7e3542a828a9e53599e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6762826961780482534
 PrefabInstance:
   m_ObjectHideFlags: 0

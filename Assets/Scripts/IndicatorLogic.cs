@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class IndicatorLogic : MonoBehaviour
 {
+
+    [Header("Pointers vars")]
     public GameObject[] attackPoints;
-
-    public float greenZone = .5f;
-    public float yellowZone = 2f;
-
     public Sprite greenTexture;
     public Sprite yellowTexture;
     public Sprite redTexture;
+    [Space]
+
+    [SerializeField]
+    private float greenZone = .4f;
+    [SerializeField]
+    private float yellowZone = 1.5f;
+
 
     public BattleHandler BattleHandler;
 
@@ -20,14 +25,12 @@ public class IndicatorLogic : MonoBehaviour
     /// <summary>BattleUI GameObject;</summary>
     private GameObject battleCanvas;
     private Image Indicator;
-    [SerializeField]
-    private float indicatorMoveSpeed = 0.3f;
+    [SerializeField, Header("Indicator"),Range(5f,50f)]
+    private float indicatorMoveSpeed = 10f;
 
-    [SerializeField]
     private int attackPointIndex = 0;
     private Image[] attackPointImage;
 
-    [SerializeField]
     private Vector3 nextDestination;
     private float markerDistanceAllowance = 0.01f;
 
