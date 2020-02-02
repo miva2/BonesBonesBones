@@ -154,6 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22149dd3ebad79e48ba808663fe68f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uIndex: 0
+  vIndex: 1
+  multiplier: 1
 --- !u!64 &192894497
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1034,6 +1037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499171584}
   - component: {fileID: 1499171583}
+  - component: {fileID: 1499171585}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -1116,6 +1120,21 @@ Transform:
   m_Father: {fileID: 650686690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1499171585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499171582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4324256ce1907a340a0b8f6896fc9807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1499171583}
+  speed: 1
+  offsetRange: 10
 --- !u!1 &1565880350
 GameObject:
   m_ObjectHideFlags: 0
