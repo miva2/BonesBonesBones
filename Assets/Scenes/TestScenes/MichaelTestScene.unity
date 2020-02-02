@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1664,17 +1664,30 @@ PrefabInstance:
         type: 3}
       propertyPath: greenTexture
       value: 
-      objectReference: {fileID: 2800000, guid: d5351301170695248a6e280ba9542775, type: 3}
+      objectReference: {fileID: 21300000, guid: d5351301170695248a6e280ba9542775,
+        type: 3}
     - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
         type: 3}
       propertyPath: yellowTexture
       value: 
-      objectReference: {fileID: 2800000, guid: d171d8b843fe072478c5fd6c9bde6bbf, type: 3}
+      objectReference: {fileID: 21300000, guid: d171d8b843fe072478c5fd6c9bde6bbf,
+        type: 3}
     - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
         type: 3}
       propertyPath: redTexture
       value: 
-      objectReference: {fileID: 2800000, guid: a148a658b19a1a448a8aa6b3fb716d44, type: 3}
+      objectReference: {fileID: 21300000, guid: a148a658b19a1a448a8aa6b3fb716d44,
+        type: 3}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: greenZone
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: yellowZone
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84969e1391275674897b10431c95a1e9, type: 3}
 --- !u!1 &1892719848

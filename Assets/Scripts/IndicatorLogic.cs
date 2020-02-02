@@ -5,32 +5,29 @@ using UnityEngine.UI;
 
 public class IndicatorLogic : MonoBehaviour
 {
+    public GameObject[] attackPoints;
+
+    public float greenZone = .5f;
+    public float yellowZone = 2f;
+
+    public Sprite greenTexture;
+    public Sprite yellowTexture;
+    public Sprite redTexture;
+
+
     /// <summary>BattleUI GameObject;</summary>
     private GameObject battleCanvas;
-    [SerializeField]
     private Image Indicator;
     [SerializeField]
     private float indicatorMoveSpeed = 0.3f;
-    public GameObject[] attackPoints;
 
     [SerializeField]
     private int attackPointIndex = 0;
+    private Image[] attackPointImage;
+
     [SerializeField]
     private Vector3 nextDestination;
     private float markerDistanceAllowance = 0.01f;
-
-    
-    public float greenZone = 3f;
-    public float yellowZone = 8f;
-    //public float redZone = ;
-    private Rect currentTargetRect;
-    private Transform currentTargetTransform;
-    private Image currentTargetImage;
-    private Rect indicatorRect;
-
-    public Texture greenTexture;
-    public Texture yellowTexture;
-    public Texture redTexture;
 
     [SerializeField]
     private Sprite HitTexture, AimTexture;  
@@ -39,16 +36,16 @@ public class IndicatorLogic : MonoBehaviour
     private void Start()
     {
         battleCanvas = this.GetComponentInParent<Canvas>().gameObject;
-        indicatorRect = this.GetComponent<RectTransform>().rect;
         nextDestination = attackPoints[attackPointIndex].transform.position;
-        currentTargetRect = attackPoints[attackPointIndex].GetComponent<RectTransform>().rect;
-        currentTargetTransform = attackPoints[attackPointIndex].GetComponent<Transform>();
-        //currentTargetImage = attackPoints[attackPointIndex].GetComponent<Image>(); //------------- TODO HERE
+
+        attackPointImage = new Image[3];
+        for (var i = 0; i < 3; i++)
+            attackPointImage[i] = attackPoints[i].GetComponent<Image>();
     }
     private void Update()
     {
         Indicator_AutoMove();
-        determineEffectiveness();
+        SetColors();
     }
 
     public void Attack()
@@ -56,7 +53,38 @@ public class IndicatorLogic : MonoBehaviour
         print("HIT!");
     }
 
-    private void determineEffectiveness()
+    void SetColors()
+    {
+        SetColor(0);
+        SetColor(1);
+        SetColor(2);
+    }
+
+    void SetColor(int index)
+    {
+        var point = attackPoints[index];
+
+        var pos = transform.position;
+        var target = point.transform.position;
+        var distSq = Vector3.SqrMagnitude(pos - target);
+
+        var img = attackPointImage[index];
+
+        if (distSq < greenZone * greenZone)
+        {
+            img.sprite = greenTexture;
+        }
+        else if (distSq < yellowZone * yellowZone)
+        {
+            img.sprite = yellowTexture;
+        }
+        else
+        {
+            img.sprite = redTexture;
+        }
+    }
+
+    /*private void determineEffectiveness()
     {
 
         // TODO: dont calculate every frame
@@ -89,20 +117,20 @@ public class IndicatorLogic : MonoBehaviour
             //red
             // Debug.Log("RED");
             //changing the image of other component is ugly. Should send an event.
-            //currentTargetImage.image = redTexture; //------------- TODO HERE
+            currentTargetImage.sprite = redTexture; //------------- TODO HERE
         } else if (Mathf.Abs(indicatorX - targetX) <= yellowZone && Mathf.Abs(indicatorY - targetY) <= yellowZone
         && !(Mathf.Abs(indicatorX - targetX) <= greenZone && Mathf.Abs(indicatorY - targetY) <= greenZone)) 
         {
             //yellow
             // Debug.Log("YELLOW");
-            //currentTargetImage.image = yellowTexture; //------------- TODO HERE
+            currentTargetImage.sprite = yellowTexture; //------------- TODO HERE
         } else if (Mathf.Abs(indicatorX - targetX) <= greenZone && Mathf.Abs(indicatorY - targetY) <= greenZone)
         {
             //green
             // Debug.Log("GREEN");
-            //currentTargetImage.image = greenTexture; //------------- TODO HERE
+            currentTargetImage.sprite = greenTexture; //------------- TODO HERE
         }
-    }
+    }*/
 
     private void Indicator_AutoMove(){
         if (battleCanvas.activeInHierarchy == true)
@@ -127,8 +155,6 @@ public class IndicatorLogic : MonoBehaviour
             attackPointIndex = 0;
         }
 
-        updateTarget();
-
         return attackPoints[attackPointIndex].transform.position;
     }
 
@@ -139,12 +165,6 @@ public class IndicatorLogic : MonoBehaviour
         return dist <= markerDistanceAllowance;
     }
 
-    private void updateTarget()
-    {
-        currentTargetRect = attackPoints[attackPointIndex].GetComponent<RectTransform>().rect;
-        currentTargetTransform = attackPoints[attackPointIndex].GetComponent<Transform>();
-        //currentTargetImage = attackPoints[attackPointIndex].GetComponent<Image>(); //------------- TODO HERE
-    }
 
     public void ChangeIndicatorImage(string Image){
         if(Image == "Aim"){
