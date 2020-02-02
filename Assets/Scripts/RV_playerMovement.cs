@@ -7,6 +7,9 @@ using UnityEngine.Events;
 public class RV_playerMovement : MonoBehaviour
 {
     [SerializeField]
+    private AudioSource walkingSound;
+
+    [SerializeField]
     private float playerMovementSpeed = 0.3f;
     public GameObject playerMovePoint;
     private Transform pmo; // Player move object;
@@ -37,7 +40,7 @@ public class RV_playerMovement : MonoBehaviour
                 }
             }
         }
-        if(pmo) {
+        if(pmo != null) {
             pmoSpawned =true;
         } else {
             pmoSpawned = false;
@@ -48,10 +51,22 @@ public class RV_playerMovement : MonoBehaviour
     }
     private void Move()
     {
-        if (pmo)
+        if (pmo != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, pmo.transform.position, playerMovementSpeed);
             this.transform.LookAt(pmo.transform);
+
+            if (!walkingSound.isPlaying)
+            {
+                walkingSound.Play();
+            }
+        }
+        else
+        {
+            if (walkingSound.isPlaying)
+            {
+                walkingSound.Stop();
+            }
         }
     }
 
