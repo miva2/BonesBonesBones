@@ -175,12 +175,17 @@ public class IndicatorLogic : MonoBehaviour
         return dist <= markerDistanceAllowance;
     }
 
-
+    /// <summary>
+    /// Change sprite image of indicator as you need.
+    /// </summary>
+    /// <param name="Image">String {Aim, Hit, Miss}</param>
     public void ChangeIndicatorImage(string Image){
         if(Image == "Aim"){
             Indicator.sprite = AimSprite;
         } else if (Image == "Hit"){
             Indicator.sprite = HitSprite;
+        } else if(Image == "Miss"){
+            Indicator.sprite = MissSprite;
         }
     }
 
