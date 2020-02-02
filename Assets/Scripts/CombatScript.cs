@@ -24,6 +24,14 @@ public class CombatScript : MonoBehaviour
     private float zoomSpeed;
     private float defaultOrthographicSize;
 
+    public enum HitZone { RED, YELLOW, GREEN }
+    private HitZone currentHitZone;
+
+    public void SetHitZone(HitZone hitZone)
+    {
+        currentHitZone = hitZone;
+    }
+
     private void Start()
     {
         defaultOrthographicSize = MainCamera.orthographicSize;

@@ -14,6 +14,8 @@ public class IndicatorLogic : MonoBehaviour
     public Sprite yellowTexture;
     public Sprite redTexture;
 
+    public CombatScript combatScript;
+
 
     /// <summary>BattleUI GameObject;</summary>
     private GameObject battleCanvas;
@@ -73,14 +75,17 @@ public class IndicatorLogic : MonoBehaviour
         if (distSq < greenZone * greenZone)
         {
             img.sprite = greenTexture;
+            combatScript.SetHitZone(CombatScript.HitZone.GREEN);
         }
         else if (distSq < yellowZone * yellowZone)
         {
             img.sprite = yellowTexture;
+            combatScript.SetHitZone(CombatScript.HitZone.YELLOW);
         }
         else
         {
             img.sprite = redTexture;
+            combatScript.SetHitZone(CombatScript.HitZone.RED);
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,6 +254,18 @@ MonoBehaviour:
   boneDropElevation: 0
   boneDropForce: 0
   stunSeconds: 0
+--- !u!114 &135022468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2355299373839621446, guid: 6146ab6fd54c34039bd159ce863243a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2355299372960728218}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135022465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336d252dc3c416e4a99eac61ec62f5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &135022475
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -810,6 +822,51 @@ PrefabInstance:
       propertyPath: Indicator
       value: 
       objectReference: {fileID: 639229884}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: greenTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: d5351301170695248a6e280ba9542775,
+        type: 3}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: yellowTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: d171d8b843fe072478c5fd6c9bde6bbf,
+        type: 3}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: redTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: a148a658b19a1a448a8aa6b3fb716d44,
+        type: 3}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: HitTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 7d99938552e4c2e4b98b3934834a41b2,
+        type: 3}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: AimTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e3f1d9f1fed3b44da1cccd32041ca37,
+        type: 3}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: greenZone
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: yellowZone
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006168492562610488, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: combatScript
+      value: 
+      objectReference: {fileID: 135022468}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84969e1391275674897b10431c95a1e9, type: 3}
 --- !u!1 &3006168493016240513 stripped
