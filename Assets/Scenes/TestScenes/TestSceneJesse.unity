@@ -367,8 +367,9 @@ GameObject:
   - component: {fileID: 515312998}
   - component: {fileID: 515313000}
   - component: {fileID: 515312999}
+  - component: {fileID: 515313001}
   m_Layer: 5
-  m_Name: HealthBone2
+  m_Name: RightUpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +382,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515312997}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -390,7 +391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -101, y: 0}
+  m_AnchoredPosition: {x: -193.3, y: 1.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515312999
@@ -426,6 +427,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515312997}
   m_CullTransparentMesh: 0
+--- !u!114 &515313001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515312997}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.009815574, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 3.36, y: 2.78}
+  m_UseGraphicAlpha: 1
 --- !u!1 &575048556
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +701,7 @@ MonoBehaviour:
   repairUI: {fileID: 1761376018}
   pickupRange: 10
   boneAttachHandler: {fileID: 1761376020}
+  healthScript: {fileID: 1565880352}
 --- !u!114 &650686692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,6 +720,7 @@ MonoBehaviour:
   boneDropDistance: 5
   boneDropElevation: 0.3
   boneDropForce: 100
+  stunSeconds: 3
 --- !u!1 &659816137
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,12 +772,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 9ec8a264778cd5444ac5f991b0565950, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -820,7 +838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -287, y: 0}
+  m_AnchoredPosition: {x: -91.5, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &770050124
@@ -898,8 +916,9 @@ GameObject:
   - component: {fileID: 1379310973}
   - component: {fileID: 1379310975}
   - component: {fileID: 1379310974}
+  - component: {fileID: 1379310976}
   m_Layer: 5
-  m_Name: HealthBone3
+  m_Name: LeftUpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -912,16 +931,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379310972}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1565880351}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 7.4, y: 0.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1379310974
@@ -957,6 +976,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379310972}
   m_CullTransparentMesh: 0
+--- !u!114 &1379310976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379310972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.009815574, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3.36, y: 2.78}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1462023133
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,8 +1002,9 @@ GameObject:
   - component: {fileID: 1462023134}
   - component: {fileID: 1462023136}
   - component: {fileID: 1462023135}
-  m_Layer: 5
-  m_Name: HealthBone4
+  - component: {fileID: 1462023137}
+  m_Layer: 8
+  m_Name: LeftLowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,16 +1017,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462023133}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1565880351}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90.9, y: 0}
+  m_AnchoredPosition: {x: 6.7, y: -71.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462023135
@@ -1027,6 +1062,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462023133}
   m_CullTransparentMesh: 0
+--- !u!114 &1462023137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462023133}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.009815574, g: 1, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3.36, y: 2.78}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1499171582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,14 +1216,14 @@ RectTransform:
   - {fileID: 770050123}
   - {fileID: 1757965904}
   - {fileID: 515312998}
-  - {fileID: 1379310973}
   - {fileID: 1462023134}
+  - {fileID: 1379310973}
   m_Father: {fileID: 1662045484}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224, y: 404}
+  m_AnchoredPosition: {x: -675, y: 384}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1565880352
@@ -1189,12 +1239,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 650686692}
-  healthBones:
-  - {fileID: 770050122}
-  - {fileID: 1757965903}
-  - {fileID: 515312997}
-  - {fileID: 1379310972}
-  - {fileID: 1462023133}
+  rightLowerBone: {fileID: 1757965903}
+  rightUpperBone: {fileID: 515312997}
+  leftLowerBone: {fileID: 1462023133}
+  leftUpperBone: {fileID: 1379310972}
+  missingPickupAlpha: 0.25
 --- !u!1 &1662045483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,7 +1376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -338, y: -391}
+  m_AnchoredPosition: {x: -315, y: -373}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1748760161
@@ -1495,7 +1544,7 @@ GameObject:
   - component: {fileID: 1757965906}
   - component: {fileID: 1757965905}
   m_Layer: 5
-  m_Name: HealthBone1
+  m_Name: RightLowerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1508,16 +1557,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757965903}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1565880351}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -195, y: 0}
+  m_AnchoredPosition: {x: -196.2, y: -70.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757965905
@@ -1569,7 +1618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1761376019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1604,6 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e754da798ccad0643ae6ae05ca9f0e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 650686692}
   leftBoneStartingPos: {fileID: 1677938980}
   rightBoneStartingPos: {fileID: 1997180352}
   bonePrefab: {fileID: 7445057140290073153, guid: 6443d15d5fd74e046b6a808f7e5e7554,
@@ -1758,7 +1808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 347, y: -391}
+  m_AnchoredPosition: {x: 321, y: -373}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1997180354

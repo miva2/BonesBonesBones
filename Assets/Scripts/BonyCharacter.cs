@@ -23,7 +23,7 @@ public class BonyCharacter : MonoBehaviour
     bool headHasBeenHit;
     float stunTimeLeft;
     NavMeshAgent navMeshAgent;
-    Rigidbody rigidbody;
+    new Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -122,6 +122,11 @@ public class BonyCharacter : MonoBehaviour
 
         var forceVec = offsetVec * boneDropForce;
         rb.AddForce(forceVec);
+    }
+
+    internal void AddBone(BoneType type)
+    {
+        bones |= type;
     }
 
     private void Die()

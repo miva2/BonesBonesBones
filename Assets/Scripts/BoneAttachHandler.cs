@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class BoneAttachHandler : MonoBehaviour
 {
+    public BonyCharacter player;
     public Transform leftBoneStartingPos;
     public Transform rightBoneStartingPos;
     public GameObject bonePrefab;
@@ -24,22 +25,22 @@ public class BoneAttachHandler : MonoBehaviour
     {
     }
 
-    public void CreateBones(BoneType leftBoneType, BoneType rightBoneType, JointType leftJointType, JointType rightJointType)
+    public void CreateBones(JointType leftJointType, JointType rightJointType, BoneType pickupBoneType)
     {
         // Create the left and right bone from the prefab and activate the bone UI
         leftBoneObj = Instantiate<GameObject>(bonePrefab, leftBoneStartingPos.position, Quaternion.identity, transform);
         leftRectTransform = leftBoneObj.GetComponent<RectTransform>();
         leftBone = leftBoneObj.GetComponent<Bone>();
-        leftBone.BoneType = leftBoneType;
         leftBone.JointType = leftJointType;
+        leftBone.BoneType = pickupBoneType;
         var sprite = GetSprite(leftJointType);
         leftBone.GetComponent<RawImage>().texture = sprite;
 
         rightBoneObj = Instantiate<GameObject>(bonePrefab, rightBoneStartingPos.position, Quaternion.identity, transform);
         rightRectTransform = rightBoneObj.GetComponent<RectTransform>();
         rightBone = rightBoneObj.GetComponent<Bone>();
-        rightBone.BoneType = rightBoneType;
         rightBone.JointType = rightJointType;
+        rightBone.BoneType = pickupBoneType;
         sprite = GetSprite(rightJointType);
         rightBone.GetComponent<RawImage>().texture = sprite;
 
@@ -65,8 +66,16 @@ public class BoneAttachHandler : MonoBehaviour
     {
         if (leftRectTransform != null && rightRectTransform != null && BonesOverlap())
         {
-            // TODO check if bone types match
-            AttachBones();
+            if (leftBone.JointType == rightBone.JointType)
+            {
+                player.AddBone(leftBone.BoneType);
+                HideAndReset();
+            }
+            else
+            {
+                // TODO something when bones don't match
+                HideAndReset();
+            }
         }
     }
 
@@ -77,7 +86,7 @@ public class BoneAttachHandler : MonoBehaviour
         return left.Overlaps(right);
     }
 
-    private void AttachBones()
+    private void HideAndReset()
     {
         gameObject.SetActive(false);
         Destroy(leftBoneObj);

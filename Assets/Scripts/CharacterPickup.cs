@@ -8,6 +8,7 @@ public class CharacterPickup : MonoBehaviour
     public GameObject repairUI;
     public double pickupRange;
     public BoneAttachHandler boneAttachHandler;
+    public HealthBarScript healthScript;
 
     BonyCharacter bonyCharacter;
     GameObject currentPickup;
@@ -25,6 +26,7 @@ public class CharacterPickup : MonoBehaviour
         {
             DisableOutline(currentPickup);
             currentPickup = null;
+                healthScript.UnsetPickupBone();
         }
 
         // update the closest pickup
@@ -34,6 +36,7 @@ public class CharacterPickup : MonoBehaviour
             {
                 DisableOutline(currentPickup);
                 currentPickup = null;
+                healthScript.UnsetPickupBone();
             }
 
             // if it's within range we change current pickup and highlight it
@@ -41,6 +44,8 @@ public class CharacterPickup : MonoBehaviour
             {
                 EnableOutline(pickup);
                 currentPickup = pickup;
+                var pickupType = currentPickup.GetComponent<Bone>().BoneType;
+                healthScript.SetPickupBone(pickupType);
             }
         }
 
@@ -75,22 +80,42 @@ public class CharacterPickup : MonoBehaviour
 
     private void DoPickup(GameObject pickup)
     {
+        // dropped bones don't yet have a specific joint type so we can manipulate the odds
+        // they are of a specific bone type though
         var pickedUpBone = pickup.GetComponent<Bone>();
-        PickBoneTypes(pickup, pickedUpBone, out var rightBoneType, out var rightJointType);
+        var pickupBoneType = pickedUpBone.BoneType;
 
-        var leftBoneType = pickedUpBone.BoneType;
-        var leftJointType = pickedUpBone.JointType;
+        PickBoneTypes(pickup, pickedUpBone, out var leftJointType, out var rightJointType);
 
-        boneAttachHandler.CreateBones(leftBoneType, rightBoneType, leftJointType, rightJointType);
+        boneAttachHandler.CreateBones(leftJointType, rightJointType, pickupBoneType);
 
         Destroy(pickup);
     }
 
-    private void PickBoneTypes(GameObject pickup, Bone pickedUpBone, out BoneType rightBoneType, out JointType rightJoinType)
+    private void PickBoneTypes(GameObject pickupObj, Bone pickedUpBone, out JointType existingJointType, out JointType pickupJointType)
     {
-        // pickup should store how good the hit was so we can
-        rightBoneType = BoneType.LeftLowerArm;
-        rightJoinType = JointType.One;
+        // Let's think about the rules:
+        // - if the bonetype of the picked up bone is not a missing piece, we pick
+        //   a random bonetype from the char and get a non-matching joint
+        // - if the bone type is missing for the character:
+        //   - if it is a lower part and the player has no matching upper part
+        //     generate non-matching joint
+        //   - if it is a lower part and the player has a matching upper part
+        //     generate a random joint type that might match
+        //   - if it is an upper part, always match joints
+
+        var pickup = pickedUpBone.BoneType;
+        var hasBone = bonyCharacter.HasBone(pickup);
+
+        var forceMatchingJoints = (pickup == BoneType.LeftUpperArm && !hasBone) || (pickup == BoneType.RightUpperArm && !hasBone);
+
+        var forceMismatchingJoints = hasBone || (pickup == BoneType.LeftLowerArm && !bonyCharacter.HasBone(BoneType.LeftUpperArm))
+                                             ||  (pickup == BoneType.RightLowerArm && !bonyCharacter.HasBone(BoneType.RightUpperArm));
+
+        existingJointType = (JointType) UnityEngine.Random.Range(0, 3);
+        if (forceMatchingJoints) pickupJointType = existingJointType;
+        else if (forceMismatchingJoints) pickupJointType = GetRandomJointTypeExcept(existingJointType);
+        else pickupJointType = (JointType) UnityEngine.Random.Range(0, 3);
     }
 
     BoneType[] allBoneTypes = new [] { BoneType.LeftLowerArm, BoneType.RightLowerArm, BoneType.LeftUpperArm, BoneType.RightUpperArm };
@@ -99,6 +124,16 @@ public class CharacterPickup : MonoBehaviour
     {
         var boneTypes = new List<BoneType>(allBoneTypes);
         boneTypes.Remove(rightBoneType);
+        var index = UnityEngine.Random.Range(0, boneTypes.Count);
+        return boneTypes[index];
+    }
+
+    JointType[] allJointTypes = new [] { JointType.One, JointType.Two, JointType.Three };
+
+    private JointType GetRandomJointTypeExcept(JointType except)
+    {
+        var boneTypes = new List<JointType>(allJointTypes);
+        boneTypes.Remove(except);
         var index = UnityEngine.Random.Range(0, boneTypes.Count);
         return boneTypes[index];
     }
