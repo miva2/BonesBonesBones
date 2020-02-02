@@ -2946,7 +2946,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5363437646620973799}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &522604324
+--- !u!114 &522604325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5363437645540525544, guid: c5b64f225d29bba47b06fe09a9c40245,
+    type: 3}
+  m_PrefabInstance: {fileID: 5363437646620973799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522604323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14dd6d480330cca40b1cd3f90b27357d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &522604329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2975,22 +2987,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 522604325}
-          m_MethodName: ChangeCursorToRun
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: e32031aef24e6704d9963ec0d04685ca,
-              type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 4
     callback:
       m_PersistentCalls:
@@ -3006,18 +3002,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &522604325 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5363437645540525544, guid: c5b64f225d29bba47b06fe09a9c40245,
-    type: 3}
-  m_PrefabInstance: {fileID: 5363437646620973799}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522604323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14dd6d480330cca40b1cd3f90b27357d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 522604325}
+          m_MethodName: ChangeCursorToRun
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2800000, guid: e32031aef24e6704d9963ec0d04685ca,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &530507032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8481207385869469308, guid: 553cd68a7141bdf4fb3407824dc063c9,
