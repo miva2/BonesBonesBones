@@ -12,12 +12,15 @@ GameObject:
   - component: {fileID: 2355299373839621452}
   - component: {fileID: 2355299373839621455}
   - component: {fileID: 2355299373839621442}
-  - component: {fileID: 2355299373839621454}
+  - component: {fileID: 2355299373839621447}
+  - component: {fileID: 135022475}
   - component: {fileID: 2355299373839621440}
+  - component: {fileID: 2355299373839621454}
   - component: {fileID: 2355299373839621441}
   - component: {fileID: 2355299373839621443}
   - component: {fileID: 2355299373839621446}
-  - component: {fileID: 2355299373839621447}
+  - component: {fileID: 135022466}
+  - component: {fileID: 135022477}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -99,27 +102,42 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2355299373839621449}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 600
+  m_Drag: 2
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
---- !u!65 &2355299373839621454
-BoxCollider:
+--- !u!136 &2355299373839621447
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2355299373839621449}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.44, y: 5.8961287, z: 0.48646766}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 5.085745
+  m_Height: 16.041271
+  m_Direction: 1
+  m_Center: {x: 0.0321625, y: -0.06035141, z: 0.3290628}
+--- !u!136 &135022475
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355299373839621449}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.424338
+  m_Height: 5.8961287
+  m_Direction: 1
+  m_Center: {x: 0.03216243, y: -0.060355663, z: 0.1045069}
 --- !u!136 &2355299373839621440
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -134,6 +152,19 @@ CapsuleCollider:
   m_Height: 2.932676
   m_Direction: 1
   m_Center: {x: 0, y: -2.0497036, z: 0.09581598}
+--- !u!65 &2355299373839621454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355299373839621449}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.44, y: 5.8961287, z: 0.48646766}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &2355299373839621441
 Animator:
   serializedVersion: 3
@@ -165,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00d1ec17add9c149a1936345925ab57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovementSpeed: 0.5
+  playerMovementSpeed: 0.4
   playerMovePoint: {fileID: 4186064338879712024, guid: 98f609c07f98f26428e4162c58739066,
     type: 3}
   battleRadius: {fileID: 0}
@@ -182,17 +213,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336d252dc3c416e4a99eac61ec62f5ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &2355299373839621447
-CapsuleCollider:
+  zoomedOrthographicSize: 15
+  maxZoomSpeed: 8
+  zoomAccel: 80
+  attackEnabled: 0
+  activeTriggers: 0
+  MainCamera: {fileID: 0}
+--- !u!114 &135022466
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2355299373839621449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 5.085745
-  m_Height: 16.041271
-  m_Direction: 1
-  m_Center: {x: 0.0321625, y: -0.06035141, z: 0.3290628}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58e184328002f843b7baf9ad5e3c3e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DroppedBonePrefab: {fileID: 4310263023612130090, guid: 27e78651776bf904087be0e91be30eb2,
+    type: 3}
+  bones: -1
+  boneDropDistance: 10
+  boneDropElevation: 0.3
+  boneDropForce: 100
+  stunSeconds: 0
+--- !u!114 &135022477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355299373839621449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b25743d57fe4ab4f8267daafe9f893a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  repairUI: {fileID: 0}
+  pickupRange: 0
+  boneAttachHandler: {fileID: 0}
+  healthScript: {fileID: 0}

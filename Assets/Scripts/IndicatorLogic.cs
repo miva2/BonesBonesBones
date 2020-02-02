@@ -31,8 +31,13 @@ public class IndicatorLogic : MonoBehaviour
     private Vector3 nextDestination;
     private float markerDistanceAllowance = 0.01f;
 
+    [Header("Identicator sprites")]
     [SerializeField]
-    private Sprite HitTexture, AimTexture;  
+    private Sprite AimSprite;  
+    [SerializeField]
+    private Sprite HitSprite;
+    [SerializeField]
+    private Sprite MissSprite;
 
 
     private void Start()
@@ -170,9 +175,9 @@ public class IndicatorLogic : MonoBehaviour
 
     public void ChangeIndicatorImage(string Image){
         if(Image == "Aim"){
-            Indicator.sprite = AimTexture;
+            Indicator.sprite = AimSprite;
         } else if (Image == "Hit!"){
-            Indicator.sprite = HitTexture;
+            Indicator.sprite = HitSprite;
         }
     }
 
