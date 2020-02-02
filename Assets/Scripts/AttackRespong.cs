@@ -33,7 +33,7 @@ public class AttackRespong : MonoBehaviour
         // print("Default cursor setted;");
     }
     public void Hitted(Image HittedPoint){
-        player.GetComponent<BonyCharacter>().Hit(HittedPoint.name, Vector3.zero);
+        player.GetComponent<BonyCharacter>().TakeDamage(HittedPoint.name, Vector3.zero);
         AttackIndicator.GetComponent<IndicatorLogic>().ChangeIndicatorImage("Hit!");
     }
 

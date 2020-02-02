@@ -38,7 +38,7 @@ public class BonyCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Hit("LeftPoint", Vector3.zero);
+            TakeDamage("LeftPoint", Vector3.zero);
         }
 
         UpdateStunTime();
@@ -58,8 +58,16 @@ public class BonyCharacter : MonoBehaviour
         }
     }
 
-    public void Hit(String target, Vector3 stunForce)
+    /// <summary>
+    /// Call to hit this bony character.
+    /// </summary>
+    /// <param name="target">Attack target (LeftPoint, RightPoint or HeadPoint).</param>
+    /// <param name="dropChance">Chance to drop the hit bone [0, 1].</param>
+    /// <param name="stunForce">Force to apply when hitting the head to stun.</param>
+    public void TakeDamage(string target, float dropChance, Vector3? stunForce = null)
     {
+        stunForce = stunForce ?? Vector3.zero;
+
         Debug.Log($"Hit bone of type {target}.");
 
         var health = GetHealth();
@@ -71,7 +79,7 @@ public class BonyCharacter : MonoBehaviour
 
         if (target == "HeadPoint")
         {
-            Stun(stunForce);
+            Stun(stunForce.Value);
         }
         else
         {
@@ -101,7 +109,10 @@ public class BonyCharacter : MonoBehaviour
 
             // mask out the bonetype that was hit and throw it out
             bones &= ~hitBone;
-            ThrowOutBone(hitBone);
+
+            var rnd = UnityEngine.Random.Range(0, 1);
+            if (rnd < dropChance)
+                ThrowOutBone(hitBone);
         }
     }
 

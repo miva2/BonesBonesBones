@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 9954151}
   - component: {fileID: 9954150}
   - component: {fileID: 9954149}
+  - component: {fileID: 9954153}
   m_Layer: 0
   m_Name: floor
   m_TagString: Untagged
@@ -172,7 +173,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed610575a2e7c9349b05fc0b6f3a072b, type: 2}
+  - {fileID: 2100000, guid: 3a10ee3d9d63966439a3ae5767147007, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -209,12 +210,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9954148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 294.93, y: 1, z: 1597.5051}
+  m_LocalPosition: {x: -407, y: 0, z: -818}
+  m_LocalScale: {x: 147.31754, y: 1, z: 186.85675}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9954153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9954148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22149dd3ebad79e48ba808663fe68f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIndex: 0
+  vIndex: 2
+  multiplier: 1
 --- !u!1001 &19242888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3145,7 +3161,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.81e-43, y: 0.0000025959253, z: 9.8e-43, w: 6.05e-43}
+  m_BoundingSphereOverride: {x: 9.81e-43, y: 0, z: 4.5905e-41, w: 9.798e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
