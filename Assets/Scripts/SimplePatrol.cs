@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class SimplePatrol : MonoBehaviour
 {
 
-    public GameObject[] patrolPoints;
+    public GameObject path;
+    GameObject[] patrolPoints;
     public float moveSpeed;
     public float destinationReachedRadius = 0.4f;
 
@@ -19,6 +20,12 @@ public class SimplePatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        patrolPoints = new GameObject[path.transform.childCount];
+        for (var i = 0; i < path.transform.childCount; i++)
+        {
+            patrolPoints[i] = path.transform.GetChild(i).gameObject;
+        }
+
         nextDestination = patrolPoints[patrolPointIndex].transform.position;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.updateRotation = true;
