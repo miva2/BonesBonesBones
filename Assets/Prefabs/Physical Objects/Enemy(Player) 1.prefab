@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ec2b0cd0ef64a8f80451c3081f0aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 0}
-  moveSpeed: 1
+  patrolPoints: []
+  moveSpeed: 5
   destinationReachedRadius: 10
 --- !u!195 &5363437645788192688
 NavMeshAgent:
