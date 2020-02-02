@@ -7,15 +7,36 @@ public class BattleHandler : MonoBehaviour
         /// <summary>
         /// Where can we attack.
         /// </summary>
-    private enum HitZone { RED, YELLOW, GREEN }
 
+    public enum HitZoneColor { RED, YELLOW, GREEN }
+
+    public struct HitZone {
+        public string hitzoneType;
+        public HitZoneColor color;
+
+        public HitZone(string hitzoneType, HitZoneColor color)
+        {
+            this.hitzoneType = hitzoneType;
+            this.color = color;
+        }
+    }
     private IndicatorLogic indicatorLogic;
-    private HitZone currentHitZone;
+        /// <summary>
+        /// Current Hit Zone.
+        /// </summary>
+    private HitZone cHZ;
 
     private void Start() 
     {
             // Indicator script init; \\
-        indicatorLogic.GetComponentInChildren<IndicatorLogic>(true);
+        indicatorLogic = GetComponentInChildren<IndicatorLogic>(true);
+            // Nearest target (Point), nearests point color \\
+            /// ummary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+
+        cHZ = indicatorLogic.GetCurrentHitzone();
     }
 
     /// <summary>
@@ -23,6 +44,6 @@ public class BattleHandler : MonoBehaviour
     /// </summary>
     private void Attacking()
     {
-
+        switch(cHZ.hitzoneType){}
     }
 }

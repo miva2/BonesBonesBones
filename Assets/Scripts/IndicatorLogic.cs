@@ -14,7 +14,7 @@ public class IndicatorLogic : MonoBehaviour
     public Sprite yellowTexture;
     public Sprite redTexture;
 
-    public CombatScript combatScript;
+    public BattleHandler BattleHandler;
 
 
     /// <summary>BattleUI GameObject;</summary>
@@ -199,32 +199,29 @@ public class IndicatorLogic : MonoBehaviour
         return closestTarget;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns>The current hitzone containing the type (Head, left, right) and the color (RED, YELLOW, GREEN)</returns>
-    public CombatScript.HitZone GetCurrentHitzone()
+    /// <returns>Nearest target(HeadPoit, LeftPoint, RightPoint), Color of nearest target (RED, YELLOW, GREEN)</returns>
+    public BattleHandler.HitZone GetCurrentHitzone()
     {
         GameObject target = GetClosestTarget();
 
         string hitzoneType = target.name;
 
         Sprite sprite = target.GetComponent<Image>().sprite;
-        CombatScript.HitZoneColor color;
+        BattleHandler.HitZoneColor color;
         if (sprite == greenTexture)
         {
-            color = CombatScript.HitZoneColor.GREEN;
+            color = BattleHandler.HitZoneColor.GREEN;
         }
         else if (sprite == yellowTexture)
         {
-            color = CombatScript.HitZoneColor.YELLOW;
+            color = BattleHandler.HitZoneColor.YELLOW;
         }
         else
         {
-            color = CombatScript.HitZoneColor.RED;
+            color = BattleHandler.HitZoneColor.RED;
         }
 
-        CombatScript.HitZone hitZone = new CombatScript.HitZone(hitzoneType, color);
+        BattleHandler.HitZone hitZone = new BattleHandler.HitZone(hitzoneType, color);
 
         return hitZone;
     }
