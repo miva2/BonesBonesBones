@@ -41,6 +41,8 @@ public class MazeWallEdit : Editor
         otherAction?.Invoke();
     }
 
+    int wallIndex = 0;
+
     private Action<Transform> GetSelectedKeyAction(KeyCode keyCode)
     {
         var sceneCamera = SceneView.lastActiveSceneView.camera;
@@ -105,7 +107,21 @@ public class MazeWallEdit : Editor
                 };
             case KeyCode.D:
                 return t => {
-                    var newObj = Instantiate<GameObject>(t.gameObject);
+                    var prefabRoot = PrefabUtility.GetCorrespondingObjectFromSource(Selection.activeGameObject);
+                    
+                    GameObject newObj;
+                    if (prefabRoot != null)
+                    {
+                        newObj = (GameObject) PrefabUtility.InstantiatePrefab(prefabRoot);
+                        var og = Selection.activeGameObject.transform;
+                        newObj.transform.rotation = og.rotation;
+                        newObj.transform.localScale = og.localScale;
+                        newObj.transform.position = og.position;
+                    }
+                    else newObj = Instantiate(Selection.activeGameObject);
+
+                    newObj.name = "Wall" + wallIndex++;
+
                     Selection.objects = new GameObject[] { newObj };
                 };
         }
