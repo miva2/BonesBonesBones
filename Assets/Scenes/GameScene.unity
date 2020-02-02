@@ -5719,6 +5719,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135022475, guid: 6146ab6fd54c34039bd159ce863243a0, type: 3}
+      propertyPath: m_Center.z
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 135022475, guid: 6146ab6fd54c34039bd159ce863243a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 135022477, guid: 6146ab6fd54c34039bd159ce863243a0, type: 3}
       propertyPath: repairUI
       value: 
@@ -5735,6 +5743,26 @@ PrefabInstance:
       propertyPath: healthScript
       value: 
       objectReference: {fileID: 511411143}
+    - target: {fileID: 2355299373839621440, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621440, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -2.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621440, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621440, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2355299373839621441, guid: 6146ab6fd54c34039bd159ce863243a0,
         type: 3}
       propertyPath: m_Controller
@@ -5784,6 +5812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621447, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 2355299373839621449, guid: 6146ab6fd54c34039bd159ce863243a0,
         type: 3}
@@ -5894,6 +5927,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621454, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621454, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621454, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 2355299373839621455, guid: 6146ab6fd54c34039bd159ce863243a0,
         type: 3}
