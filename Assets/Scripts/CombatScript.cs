@@ -5,41 +5,65 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CombatScript : MonoBehaviour
-{
-    public float zoomedOrthographicSize = 15;
-    public float maxZoomSpeed = 8;
-    public float zoomAccel = 80;
+{  
 
-    public bool attackEnabled = false;
-    private GameObject currentEnemy;
-    private Canvas BattleUi;
-    /// <summary>Shade out image for dissabling BattleUi.</summary>
+    [SerializeField, Header("Combat camera settings"),Tooltip("Main Camera")]
+    private Camera CombatCamera;
     [SerializeField]
-   // private GameObject shadeOut;
-    private int activeTriggers = 0;
+    private float zoomedOrthographicSize = 15;
     [SerializeField]
-    private Camera MainCamera;
-
+    private float maxZoomSpeed = 8;
+    [Range(0f,120f), SerializeField]
+    private float zoomAccel = 80;
     private float targetZoom;
     private float zoomSpeed;
     private float defaultOrthographicSize;
+    [Space]
+    // -----------------------------------------------------------------
+    
+     [Header("Rest")]
+    
+    // -------------------------------------------------------------------
 
-    public enum HitZoneColor { RED, YELLOW, GREEN }
 
-    public struct HitZone {
-        public string hitzoneType;
-        public HitZoneColor color;
+        /// <summary> Is attack enabled?</summary>
+    public bool attackEnabled = false;
+        
+        /// <summary>
+        /// Curent enemy object.
+        /// </summary>
+    private GameObject currentEnemy;
 
-        public HitZone(string hitzoneType, HitZoneColor color)
-        {
-            this.hitzoneType = hitzoneType;
-            this.color = color;
-        }
-    }
+        /// <summary>
+        /// BattleUI canvas.
+        /// </summary>
+    private Canvas BattleUi;
+    private int activeTriggers = 0;
 
-    [SerializeField] 
+        /// <summary>
+        /// Checking, if battle was initializate alredy.
+        /// </summary>
+    private bool wasBattleInit = false;
+
+
+
+    //--------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Possibilities, where you can hit.
+    /// </summary>
+    public enum HitZone { RED, YELLOW, GREEN }
+
+    
+        /// <summary>
+        /// Currently hitted point.
+        /// </summary>
     private HitZone currentHitZone;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hitZone">Enum HitZone</param>
     public void SetHitZone(HitZone hitZone)
     {
         currentHitZone = hitZone;
@@ -47,7 +71,8 @@ public class CombatScript : MonoBehaviour
 
     private void Start()
     {
-        defaultOrthographicSize = MainCamera.orthographicSize;
+            // Set current camera position. \\
+        defaultOrthographicSize = CombatCamera.orthographicSize;
         targetZoom = defaultOrthographicSize;
     }
 
@@ -56,9 +81,10 @@ public class CombatScript : MonoBehaviour
         UpdateZoom();
     }
 
+    /// <summary>Zoom-in and zoom-out the camera.</summary>
     private void UpdateZoom()
     {
-        var currentZoom = MainCamera.orthographicSize;
+        var currentZoom = CombatCamera.orthographicSize;
         if (currentZoom == targetZoom) return;
 
         var sign = Mathf.Sign(targetZoom - currentZoom);
@@ -67,7 +93,7 @@ public class CombatScript : MonoBehaviour
         zoomSpeed = Mathf.Clamp(zoomSpeed + zoomAccel * dt * sign, -maxZoomSpeed, maxZoomSpeed);
         currentZoom += zoomSpeed * dt;
 
-        MainCamera.orthographicSize = Mathf.Clamp(currentZoom, zoomedOrthographicSize, defaultOrthographicSize);
+        CombatCamera.orthographicSize = Mathf.Clamp(currentZoom, zoomedOrthographicSize, defaultOrthographicSize);
 
         if (currentZoom == targetZoom)
         {
@@ -76,28 +102,27 @@ public class CombatScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-            // Enemy init \\
+            // [Enemy init] \\
         if (other.tag == "Enemy")
         {
+                // Reference for currnet enemy init \\
             currentEnemy = other.gameObject;
+                // 
             activeTriggers++;
-            targetZoom = 15;
+            targetZoom = zoomedOrthographicSize;
         }
+            // You spotted the enemy.  \\
         if (other.tag == "Enemy" && activeTriggers >= 1)
         {
 
             ShowBattleUI();
         }
+            // Player can attack the enemy. \\
         if(other.tag == "Enemy" && activeTriggers == 2)
         {
-            //shadeOut.SetActive(false);
-            BattleInit();
+                // Was battle init before?
+            if(!wasBattleInit) BattleInit();
         }    
-    }
-
-    private void OnTriggerStay(Collider other) 
-    {
-
     }
 
     private void OnTriggerExit(Collider other) {
@@ -112,6 +137,7 @@ public class CombatScript : MonoBehaviour
         {
             BattleUi.gameObject.SetActive(false);
             targetZoom = 20;
+            wasBattleInit = false;
         }
     }
 
@@ -121,9 +147,12 @@ public class CombatScript : MonoBehaviour
         BattleUi.gameObject.SetActive(true);
         //shadeOut.GetComponent<GameObject>().SetActive(true);
     }
+        /// <summary>Secend phase of battle. </summary>
     private void BattleInit(){
-        //print("You can attack bro!");
+        print("You can attack bro!");
+            // Inform that battle started;
         BattleUi.SendMessage("AttackStarts");
         attackEnabled = true;
     }
+
 }

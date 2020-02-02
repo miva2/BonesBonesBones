@@ -201,7 +201,6 @@ public class IndicatorLogic : MonoBehaviour
 
     /// <summary>
     /// 
-    ///
     /// </summary>
     /// <returns>The current hitzone containing the type (Head, left, right) and the color (RED, YELLOW, GREEN)</returns>
     public CombatScript.HitZone GetCurrentHitzone()
