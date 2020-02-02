@@ -65,5 +65,6 @@ public class BattleHandler : MonoBehaviour
                 eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0.75f,1f));
                 break;
         }
+        
     }
 }
