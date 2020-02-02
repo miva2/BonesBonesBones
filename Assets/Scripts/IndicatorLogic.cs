@@ -46,6 +46,8 @@ public class IndicatorLogic : MonoBehaviour
         battleCanvas = this.GetComponentInParent<Canvas>().gameObject;
         nextDestination = attackPoints[attackPointIndex].transform.localPosition;
 
+        Indicator = GetComponent<Image>();
+
         attackPointImage = new Image[3];
         for (var i = 0; i < 3; i++)
             attackPointImage[i] = attackPoints[i].GetComponent<Image>();

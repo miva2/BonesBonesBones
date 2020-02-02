@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5363437644954129684}
   - component: {fileID: 3254978682622546143}
   - component: {fileID: 5363437645788192688}
+  - component: {fileID: 4410577786793957233}
   m_Layer: 0
   m_Name: Enemy(Player) 1
   m_TagString: Enemy
@@ -169,6 +170,18 @@ NavMeshAgent:
   m_BaseOffset: 2.8877094
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4410577786793957233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7194162090225145159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4828d79c1aa7e3542a828a9e53599e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7194162090300733648
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,18 +272,14 @@ MonoBehaviour:
   - {fileID: 7194162092243475934}
   - {fileID: 7194162091980327563}
   - {fileID: 7194162092141277771}
-  greenZone: 3
-  yellowZone: 8
-  greenTexture: {fileID: 2800000, guid: d5351301170695248a6e280ba9542775, type: 3}
-  yellowTexture: {fileID: 2800000, guid: d171d8b843fe072478c5fd6c9bde6bbf, type: 3}
-  redTexture: {fileID: 2800000, guid: a148a658b19a1a448a8aa6b3fb716d44, type: 3}
-  BattleHandler: {fileID: 0}
+  greenTexture: {fileID: 21300000, guid: d5351301170695248a6e280ba9542775, type: 3}
+  yellowTexture: {fileID: 21300000, guid: d171d8b843fe072478c5fd6c9bde6bbf, type: 3}
+  redTexture: {fileID: 21300000, guid: a148a658b19a1a448a8aa6b3fb716d44, type: 3}
+  BattleHandler: {fileID: 4410577786793957233}
   indicatorMoveSpeed: 3
-  attackPointIndex: 0
-  nextDestination: {x: 0, y: 0, z: 0}
-  AimSprite: {fileID: 0}
-  HitSprite: {fileID: 0}
-  MissSprite: {fileID: 0}
+  AimSprite: {fileID: 21300000, guid: 0e3f1d9f1fed3b44da1cccd32041ca37, type: 3}
+  HitSprite: {fileID: 21300000, guid: 7d99938552e4c2e4b98b3934834a41b2, type: 3}
+  MissSprite: {fileID: 21300000, guid: 6b07fe9db1e1e8a4a8078be3c5869a6d, type: 3}
 --- !u!1 &7194162090610384218
 GameObject:
   m_ObjectHideFlags: 0
