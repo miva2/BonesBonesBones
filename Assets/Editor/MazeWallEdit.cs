@@ -49,14 +49,14 @@ public class MazeWallEdit : Editor
 
         switch (keyCode)
         {
-            case KeyCode.F:
+            /*case KeyCode.F:
                 return t =>
                 {
                     var angles = t.rotation.eulerAngles;
                     angles.x *= -1;
                     angles.z *= -1;
                     t.rotation = Quaternion.Euler(angles);
-                };
+                };*/
             case KeyCode.E:
                 return t =>
                 {
@@ -85,6 +85,21 @@ public class MazeWallEdit : Editor
                     scale.x -= 1;
                     t.localScale = scale;
                 };
+            case KeyCode.D:
+                return t =>
+                {
+                    var scale = t.localScale;
+                    scale.z += 1;
+                    t.localScale = scale;
+                };
+            case KeyCode.A:
+                return t =>
+                {
+                    var scale = t.localScale;
+                    scale.z -= 1;
+                    t.localScale = scale;
+                };
+
             case KeyCode.LeftArrow:
                 return t => {
                     t.Translate(-gridSize, 0, 0);
@@ -97,22 +112,22 @@ public class MazeWallEdit : Editor
                 };
             case KeyCode.UpArrow:
                 return t => {
-                    t.Translate(0, -gridSize, 0);
+                    t.Translate(0, 0, -gridSize);
                     sceneCamera.transform.Translate(0, -gridSize, 0);
                 };
             case KeyCode.DownArrow:
                 return t => {
-                    t.Translate(0, gridSize, 0);
+                    t.Translate(0, 0, gridSize);
                     sceneCamera.transform.Translate(0, gridSize, 0);
                 };
-            case KeyCode.D:
+            case KeyCode.F:
                 return t => {
                     var prefabRoot = PrefabUtility.GetCorrespondingObjectFromSource(Selection.activeGameObject);
                     
                     GameObject newObj;
                     if (prefabRoot != null)
                     {
-                        newObj = (GameObject) PrefabUtility.InstantiatePrefab(prefabRoot);
+                        newObj = (GameObject) PrefabUtility.InstantiatePrefab(prefabRoot, Selection.activeGameObject.transform.parent);
                         var og = Selection.activeGameObject.transform;
                         newObj.transform.rotation = og.rotation;
                         newObj.transform.localScale = og.localScale;
