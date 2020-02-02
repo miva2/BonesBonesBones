@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CombatScript : MonoBehaviour
 {
+    public float zoomedOrthographicSize = 15;
+    public float maxZoomSpeed = 8;
+    public float zoomAccel = 80;
+
     public bool attackEnabled = false;
     private GameObject currentEnemy;
     private Canvas BattleUi;
@@ -15,13 +20,47 @@ public class CombatScript : MonoBehaviour
     [SerializeField]
     private Camera MainCamera;
 
+    private float targetZoom;
+    private float zoomSpeed;
+    private float defaultOrthographicSize;
+
+    private void Start()
+    {
+        defaultOrthographicSize = MainCamera.orthographicSize;
+        targetZoom = defaultOrthographicSize;
+    }
+
+    private void Update()
+    {
+        UpdateZoom();
+    }
+
+    private void UpdateZoom()
+    {
+        var currentZoom = MainCamera.orthographicSize;
+        if (currentZoom == targetZoom) return;
+
+        var sign = Mathf.Sign(targetZoom - currentZoom);
+
+        var dt = Time.deltaTime;
+        zoomSpeed = Mathf.Clamp(zoomSpeed + zoomAccel * dt * sign, -maxZoomSpeed, maxZoomSpeed);
+        currentZoom += zoomSpeed * dt;
+
+        MainCamera.orthographicSize = Mathf.Clamp(currentZoom, zoomedOrthographicSize, defaultOrthographicSize);
+
+        if (currentZoom == targetZoom)
+        {
+            zoomSpeed = 0;
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
             // Enemy init \\
         if (other.tag == "Enemy")
         {
             currentEnemy = other.gameObject;
             activeTriggers++;
-            MainCamera.orthographicSize = 15;
+            targetZoom = 15;
         }
         if (other.tag == "Enemy" && activeTriggers >= 1)
         {
@@ -51,8 +90,7 @@ public class CombatScript : MonoBehaviour
         if(other.tag == "Enemy" && activeTriggers <= 0)
         {
             BattleUi.gameObject.SetActive(false);
-            MainCamera.orthographicSize = 20;
-
+            targetZoom = 20;
         }
     }
 
@@ -67,6 +105,4 @@ public class CombatScript : MonoBehaviour
         BattleUi.SendMessage("AttackStarts");
         attackEnabled = true;
     }
-    
-
 }
