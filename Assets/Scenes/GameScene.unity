@@ -5770,6 +5770,16 @@ PrefabInstance:
       propertyPath: CombatCamera
       value: 
       objectReference: {fileID: 973865863}
+    - target: {fileID: 2355299373839621446, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: zoomedOrthographicSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355299373839621446, guid: 6146ab6fd54c34039bd159ce863243a0,
+        type: 3}
+      propertyPath: maxZoomSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2355299373839621447, guid: 6146ab6fd54c34039bd159ce863243a0,
         type: 3}
       propertyPath: m_Enabled
@@ -6959,7 +6969,7 @@ PrefabInstance:
     - target: {fileID: 6762826961392045202, guid: 973b665d6ee23e64f920bf79ecb5acb3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -554
+      value: -570.9
       objectReference: {fileID: 0}
     - target: {fileID: 6762826961392045202, guid: 973b665d6ee23e64f920bf79ecb5acb3,
         type: 3}
