@@ -11,7 +11,7 @@ public class AttackRespong : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private Image AttackIndicator;
+    private IndicatorLogic AttackIndicator;
 
     private void AttackStarts()
     {
@@ -34,7 +34,7 @@ public class AttackRespong : MonoBehaviour
     }
     public void Hitted(Image HittedPoint){
         player.GetComponent<BonyCharacter>().TakeDamage(HittedPoint.name, 0f);
-        AttackIndicator.GetComponent<IndicatorLogic>().ChangeIndicatorImage("Hit!");
+        AttackIndicator.GetComponent<IndicatorLogic>().ChangeIndicatorImage("Hit");
     }
 
 }

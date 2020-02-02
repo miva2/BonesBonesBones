@@ -13,9 +13,7 @@ public class IndicatorLogic : MonoBehaviour
     public Sprite redTexture;
     [Space]
 
-    [SerializeField]
     private float greenZone = .4f;
-    [SerializeField]
     private float yellowZone = 1.5f;
 
 
