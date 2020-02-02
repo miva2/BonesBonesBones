@@ -24,7 +24,20 @@ public class CombatScript : MonoBehaviour
     private float zoomSpeed;
     private float defaultOrthographicSize;
 
-    public enum HitZone { RED, YELLOW, GREEN }
+    public enum HitZoneColor { RED, YELLOW, GREEN }
+
+    public struct HitZone {
+        public string hitzoneType;
+        public HitZoneColor color;
+
+        public HitZone(string hitzoneType, HitZoneColor color)
+        {
+            this.hitzoneType = hitzoneType;
+            this.color = color;
+        }
+    }
+
+    [SerializeField] 
     private HitZone currentHitZone;
 
     public void SetHitZone(HitZone hitZone)
@@ -109,7 +122,7 @@ public class CombatScript : MonoBehaviour
         //shadeOut.GetComponent<GameObject>().SetActive(true);
     }
     private void BattleInit(){
-        print("You can attack bro!");
+        //print("You can attack bro!");
         BattleUi.SendMessage("AttackStarts");
         attackEnabled = true;
     }

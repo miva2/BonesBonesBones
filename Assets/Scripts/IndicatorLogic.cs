@@ -47,7 +47,7 @@ public class IndicatorLogic : MonoBehaviour
     private void Update()
     {
         Indicator_AutoMove();
-        SetColors();
+        SetColors();       
     }
 
     public void Attack()
@@ -75,17 +75,14 @@ public class IndicatorLogic : MonoBehaviour
         if (distSq < greenZone * greenZone)
         {
             img.sprite = greenTexture;
-            combatScript.SetHitZone(CombatScript.HitZone.GREEN);
         }
         else if (distSq < yellowZone * yellowZone)
         {
             img.sprite = yellowTexture;
-            combatScript.SetHitZone(CombatScript.HitZone.YELLOW);
         }
         else
         {
             img.sprite = redTexture;
-            combatScript.SetHitZone(CombatScript.HitZone.RED);
         }
     }
 
@@ -177,5 +174,54 @@ public class IndicatorLogic : MonoBehaviour
         } else if (Image == "Hit!"){
             Indicator.sprite = HitTexture;
         }
+    }
+
+    private GameObject GetClosestTarget()
+    {
+        Vector3 indicatorPosition = transform.position;
+        GameObject closestTarget = attackPoints[0];
+        float currentClosestDistance = float.MaxValue;
+
+        foreach(GameObject target in attackPoints){
+            float distance = Vector3.Distance(target.transform.position, indicatorPosition);
+            if(distance < currentClosestDistance)
+            {
+                currentClosestDistance = distance;
+                closestTarget = target;
+            }
+        }
+
+        return closestTarget;
+    }
+
+    /// <summary>
+    /// 
+    ///
+    /// </summary>
+    /// <returns>The current hitzone containing the type (Head, left, right) and the color (RED, YELLOW, GREEN)</returns>
+    public CombatScript.HitZone GetCurrentHitzone()
+    {
+        GameObject target = GetClosestTarget();
+
+        string hitzoneType = target.name;
+
+        Sprite sprite = target.GetComponent<Image>().sprite;
+        CombatScript.HitZoneColor color;
+        if (sprite == greenTexture)
+        {
+            color = CombatScript.HitZoneColor.GREEN;
+        }
+        else if (sprite == yellowTexture)
+        {
+            color = CombatScript.HitZoneColor.YELLOW;
+        }
+        else
+        {
+            color = CombatScript.HitZoneColor.RED;
+        }
+
+        CombatScript.HitZone hitZone = new CombatScript.HitZone(hitzoneType, color);
+
+        return hitZone;
     }
 }

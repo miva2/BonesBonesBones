@@ -1717,6 +1717,16 @@ PrefabInstance:
       propertyPath: combatScript
       value: 
       objectReference: {fileID: 1304660325}
+    - target: {fileID: 3006168494133676911, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006168494211855279, guid: 84969e1391275674897b10431c95a1e9,
+        type: 3}
+      propertyPath: m_Name
+      value: RightPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84969e1391275674897b10431c95a1e9, type: 3}
 --- !u!1 &1892719848
