@@ -28,7 +28,7 @@ public class RV_playerMovement : MonoBehaviour
         var pointerOnUI = EventSystem.current.IsPointerOverGameObject();
         if (!pointerOnUI && playerPlane.Raycast(ray, out hitDistance)){
             Vector3 mousePosition = ray.GetPoint(hitDistance);
-            if(Input.GetMouseButtonDown(0)) // Left key pressed;
+            if(Input.GetMouseButtonDown(1)) // Right key pressed;
             {
                 moving = true;
                 if(pmoSpawned)
