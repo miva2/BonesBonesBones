@@ -12,9 +12,12 @@ public class IndicatorLogic : MonoBehaviour
     public Sprite yellowTexture;
     public Sprite redTexture;
     [Space]
-
+    
+    [SerializeField, Header("Hit chance radius")]
     private float greenZone = .4f;
-    private float yellowZone = 1.5f;
+    [SerializeField]
+    private float yellowZone = 2f;
+    [Space]
 
 
     public BattleHandler BattleHandler;
@@ -23,8 +26,8 @@ public class IndicatorLogic : MonoBehaviour
     /// <summary>BattleUI GameObject;</summary>
     private GameObject battleCanvas;
     private Image Indicator;
-    [SerializeField, Header("Indicator"),Range(100f,420f)]
-    private float indicatorMoveSpeed = 150f;
+    [SerializeField, Header("Indicator"),Range(20f,150f)]
+    private float indicatorMoveSpeed = 20f;
 
     private int attackPointIndex = 0;
     private Image[] attackPointImage;
