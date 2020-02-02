@@ -38,7 +38,7 @@ public class BonyCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            TakeDamage("LeftPoint", Vector3.zero);
+            TakeDamage("LeftPoint", 0f);
         }
 
         UpdateStunTime();
