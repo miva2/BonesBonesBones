@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3006168492369843365}
   - component: {fileID: 3006168492369843368}
   - component: {fileID: 3006168492369843364}
+  - component: {fileID: 346838256}
   m_Layer: 0
   m_Name: Enemy(Player)
   m_TagString: Enemy
@@ -110,6 +111,24 @@ CapsuleCollider:
   m_Height: 7.7462044
   m_Direction: 1
   m_Center: {x: 0.032162562, y: -0.06035555, z: -1.154253}
+--- !u!114 &346838256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168492369843363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58e184328002f843b7baf9ad5e3c3e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DroppedBonePrefab: {fileID: -927199367670048503, guid: f55794d386915ab44a3571fd159982bb,
+    type: 3}
+  bones: -1
+  boneDropDistance: 1
+  boneDropElevation: 1
+  boneDropForce: 1
 --- !u!1 &3006168492562610484
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +220,13 @@ MonoBehaviour:
   - {fileID: 3006168494373755962}
   - {fileID: 3006168494133676911}
   - {fileID: 3006168494211855279}
+  attackPointIndex: 0
+  nextDestination: {x: 0, y: 0, z: 0}
+  greenZone: 3
+  yellowZone: 8
+  greenTexture: {fileID: 2800000, guid: d5351301170695248a6e280ba9542775, type: 3}
+  yellowTexture: {fileID: 2800000, guid: d171d8b843fe072478c5fd6c9bde6bbf, type: 3}
+  redTexture: {fileID: 2800000, guid: a148a658b19a1a448a8aa6b3fb716d44, type: 3}
 --- !u!1 &3006168492823502014
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +239,8 @@ GameObject:
   - component: {fileID: 3006168492823502018}
   - component: {fileID: 3006168492823502017}
   - component: {fileID: 3006168492823502016}
+  - component: {fileID: 219438342}
+  - component: {fileID: 219438345}
   m_Layer: 0
   m_Name: ClickArea
   m_TagString: Untagged
@@ -318,8 +346,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3006168492562610488}
-        m_MethodName: Attack
+      - m_Target: {fileID: 3006168493223585179}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -329,6 +357,64 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &219438342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168492823502014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 867697676}
+          m_MethodName: ChangeCursorToBattle
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2800000, guid: 7befcf2bbd932134fa338d14ffaf4960,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: SwordCursor
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &219438345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168492823502014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 867697676}
+          m_MethodName: ChangeCursorToRun
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2800000, guid: e32031aef24e6704d9963ec0d04685ca,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture2D, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3006168493034198951
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,8 +522,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.234}
-  m_SizeDelta: {x: 80.522, y: 68.744}
+  m_AnchoredPosition: {x: 0, y: 0.849}
+  m_SizeDelta: {x: 80.522, y: 84.147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3006168493223585183
 Canvas:
@@ -511,6 +597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dd6d480330cca40b1cd3f90b27357d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackEnable: 0
+  player: {fileID: 0}
 --- !u!1 &3006168494133676911
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +610,7 @@ GameObject:
   - component: {fileID: 3006168494133676912}
   - component: {fileID: 3006168494133676914}
   - component: {fileID: 3006168494133676913}
+  - component: {fileID: 680042746}
   m_Layer: 0
   m_Name: LeftSidPoint
   m_TagString: Untagged
@@ -584,6 +673,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &680042746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168494133676911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 867697676}
+          m_MethodName: Hitted
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3006168494133676913}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3006168494211855279
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +712,7 @@ GameObject:
   - component: {fileID: 3006168494211855280}
   - component: {fileID: 3006168494211855282}
   - component: {fileID: 3006168494211855281}
+  - component: {fileID: 1717037929}
   m_Layer: 0
   m_Name: RightSidePoint
   m_TagString: Untagged
@@ -657,6 +775,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1717037929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168494211855279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 867697676}
+          m_MethodName: Hitted
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3006168494211855281}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3006168494373755962
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +814,7 @@ GameObject:
   - component: {fileID: 3006168494373755963}
   - component: {fileID: 3006168494373755965}
   - component: {fileID: 3006168494373755964}
+  - component: {fileID: 717463097}
   m_Layer: 0
   m_Name: HeadPoint
   m_TagString: Untagged
@@ -691,7 +838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 27.270002}
+  m_AnchoredPosition: {x: 0, y: 33.823}
   m_SizeDelta: {x: 18.5, y: 16.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3006168494373755965
@@ -730,3 +877,31 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &717463097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006168494373755962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 867697676}
+          m_MethodName: Hitted
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3006168494373755964}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

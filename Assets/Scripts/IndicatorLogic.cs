@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class IndicatorLogic : MonoBehaviour
 {
     /// <summary>BattleUI GameObject;</summary>
     private GameObject battleCanvas;
+    [SerializeField]
+    private Image Indicator;
     [SerializeField]
     private float indicatorMoveSpeed = 0.3f;
     public GameObject[] attackPoints;
@@ -29,6 +31,9 @@ public class IndicatorLogic : MonoBehaviour
     public Texture greenTexture;
     public Texture yellowTexture;
     public Texture redTexture;
+
+    [SerializeField]
+    private Sprite HitTexture, AimTexture;  
 
 
     private void Start()
@@ -139,5 +144,13 @@ public class IndicatorLogic : MonoBehaviour
         currentTargetRect = attackPoints[attackPointIndex].GetComponent<RectTransform>().rect;
         currentTargetTransform = attackPoints[attackPointIndex].GetComponent<Transform>();
         //currentTargetImage = attackPoints[attackPointIndex].GetComponent<Image>(); //------------- TODO HERE
+    }
+
+    public void ChangeIndicatorImage(string Image){
+        if(Image == "Aim"){
+            Indicator.sprite = AimTexture;
+        } else if (Image == "Hit!"){
+            Indicator.sprite = HitTexture;
+        }
     }
 }

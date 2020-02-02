@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+    /// <summary>This module/class contains all Response-in-battle (enemy side) logic.</summary>
 public class AttackRespong : MonoBehaviour
 {
     [SerializeField]
     private bool attackEnable = false;
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private Image AttackIndicator;
 
     private void AttackStarts()
     {
@@ -32,6 +34,7 @@ public class AttackRespong : MonoBehaviour
     }
     public void Hitted(Image HittedPoint){
         player.GetComponent<BonyCharacter>().Hit(HittedPoint.name);
+        AttackIndicator.GetComponent<IndicatorLogic>().ChangeIndicatorImage("Hit!");
     }
 
 }
