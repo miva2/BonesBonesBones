@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CombatScript : MonoBehaviour
+public class AttackingScript : MonoBehaviour
 {  
 
     [SerializeField, Header("Combat camera settings"),Tooltip("Main Camera")]
