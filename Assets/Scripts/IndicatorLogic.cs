@@ -176,7 +176,7 @@ public class IndicatorLogic : MonoBehaviour
     public void ChangeIndicatorImage(string Image){
         if(Image == "Aim"){
             Indicator.sprite = AimSprite;
-        } else if (Image == "Hit!"){
+        } else if (Image == "Hit"){
             Indicator.sprite = HitSprite;
         }
     }

@@ -25,6 +25,10 @@ public class BattleHandler : MonoBehaviour
         /// Current Hit Zone.
         /// </summary>
     private HitZone cHZ;
+        /// <summary>
+        /// Enemy Bony Character Script;
+        /// </summary>
+    private BonyCharacter eBChS;
 
     private void Start() 
     {
@@ -37,6 +41,7 @@ public class BattleHandler : MonoBehaviour
             /// <returns></returns>
 
         cHZ = indicatorLogic.GetCurrentHitzone();
+        eBChS = GetComponent<BonyCharacter>();
     }
 
     /// <summary>
@@ -44,6 +49,19 @@ public class BattleHandler : MonoBehaviour
     /// </summary>
     private void Attacking()
     {
-        switch(cHZ.hitzoneType){}
+        switch(cHZ.color)
+        {
+                // Miss;
+            case HitZoneColor.RED:
+                eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0f,0.25f));
+                break;
+            case HitZoneColor.YELLOW:
+                eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0.26f,0.55f));
+                break;
+                // If you'er successful.
+            case HitZoneColor.GREEN:
+                eBChS.TakeDamage(cHZ.hitzoneType, Random.Range(0.75f,1f));
+                break;
+        }
     }
 }
