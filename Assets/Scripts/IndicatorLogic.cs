@@ -44,7 +44,7 @@ public class IndicatorLogic : MonoBehaviour
     private void Start()
     {
         battleCanvas = this.GetComponentInParent<Canvas>().gameObject;
-        nextDestination = attackPoints[attackPointIndex].transform.position;
+        nextDestination = attackPoints[attackPointIndex].transform.localPosition;
 
         attackPointImage = new Image[3];
         for (var i = 0; i < 3; i++)
@@ -72,8 +72,8 @@ public class IndicatorLogic : MonoBehaviour
     {
         var point = attackPoints[index];
 
-        var pos = transform.position;
-        var target = point.transform.position;
+        var pos = transform.localPosition;
+        var target = point.transform.localPosition;
         var distSq = Vector3.SqrMagnitude(pos - target);
 
         var img = attackPointImage[index];
@@ -146,7 +146,7 @@ public class IndicatorLogic : MonoBehaviour
             if (IsDestinationReached(nextDestination)) {
                 nextDestination = GetNextDestination();
             }
-            transform.position = Vector3.MoveTowards(transform.position, nextDestination, indicatorMoveSpeed * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, nextDestination, indicatorMoveSpeed * Time.deltaTime);
         }
     }
 
@@ -163,12 +163,12 @@ public class IndicatorLogic : MonoBehaviour
             attackPointIndex = 0;
         }
 
-        return attackPoints[attackPointIndex].transform.position;
+        return attackPoints[attackPointIndex].transform.localPosition;
     }
 
     private bool IsDestinationReached(Vector3 targetDestination)
     {
-        var dist = Vector3.Distance(transform.position, targetDestination);
+        var dist = Vector3.Distance(transform.localPosition, targetDestination);
 
         return dist <= markerDistanceAllowance;
     }
@@ -184,12 +184,12 @@ public class IndicatorLogic : MonoBehaviour
 
     private GameObject GetClosestTarget()
     {
-        Vector3 indicatorPosition = transform.position;
+        Vector3 indicatorPosition = transform.localPosition;
         GameObject closestTarget = attackPoints[0];
         float currentClosestDistance = float.MaxValue;
 
         foreach(GameObject target in attackPoints){
-            float distance = Vector3.Distance(target.transform.position, indicatorPosition);
+            float distance = Vector3.Distance(target.transform.localPosition, indicatorPosition);
             if(distance < currentClosestDistance)
             {
                 currentClosestDistance = distance;
