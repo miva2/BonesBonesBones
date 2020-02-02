@@ -13,9 +13,7 @@ public class IndicatorLogic : MonoBehaviour
     public Sprite redTexture;
     [Space]
 
-    [SerializeField]
     private float greenZone = .4f;
-    [SerializeField]
     private float yellowZone = 1.5f;
 
 
@@ -26,7 +24,7 @@ public class IndicatorLogic : MonoBehaviour
     private GameObject battleCanvas;
     private Image Indicator;
     [SerializeField, Header("Indicator"),Range(5f,50f)]
-    private float indicatorMoveSpeed = 10f;
+    private float indicatorMoveSpeed = 20f;
 
     private int attackPointIndex = 0;
     private Image[] attackPointImage;
