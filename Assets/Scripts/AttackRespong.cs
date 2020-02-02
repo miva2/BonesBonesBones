@@ -12,6 +12,8 @@ public class AttackRespong : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private IndicatorLogic AttackIndicator;
+    [SerializeField]
+    private BattleHandler childBattleHandler;
 
     private void AttackStarts()
     {
@@ -33,8 +35,10 @@ public class AttackRespong : MonoBehaviour
         // print("Default cursor setted;");
     }
     public void Hitted(Image HittedPoint){
-        player.GetComponent<BonyCharacter>().TakeDamage(HittedPoint.name, 0f);
+        // player.GetComponent<BonyCharacter>().TakeDamage(HittedPoint.name, 0f);
         AttackIndicator.GetComponent<IndicatorLogic>().ChangeIndicatorImage("Hit");
+        childBattleHandler.Attacking();
+        AttackIndicator.GetComponent<IndicatorLogic>().ChangeIndicatorImage("Aim");
     }
 
 }

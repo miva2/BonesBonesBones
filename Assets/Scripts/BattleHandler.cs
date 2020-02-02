@@ -47,8 +47,10 @@ public class BattleHandler : MonoBehaviour
     /// <summary>
     /// Attacking: Player to AI
     /// </summary>
-    private void Attacking()
+    public void Attacking()
     {
+            // Take current state. \\
+        cHZ = indicatorLogic.GetCurrentHitzone();
         switch(cHZ.color)
         {
                 // Miss;

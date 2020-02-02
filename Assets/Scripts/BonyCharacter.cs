@@ -95,6 +95,7 @@ public class BonyCharacter : MonoBehaviour
                     hitBone = BoneType.LeftUpperArm;
                 }
             }
+            // Right point \\
             else
             {
                 if (HasBone(BoneType.RightLowerArm))

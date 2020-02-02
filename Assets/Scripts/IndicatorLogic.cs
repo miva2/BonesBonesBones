@@ -23,8 +23,8 @@ public class IndicatorLogic : MonoBehaviour
     /// <summary>BattleUI GameObject;</summary>
     private GameObject battleCanvas;
     private Image Indicator;
-    [SerializeField, Header("Indicator"),Range(5f,50f)]
-    private float indicatorMoveSpeed = 10f;
+    [SerializeField, Header("Indicator"),Range(100f,420f)]
+    private float indicatorMoveSpeed = 150f;
 
     private int attackPointIndex = 0;
     private Image[] attackPointImage;
